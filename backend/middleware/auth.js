@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const { MOCK_USERS, isDbConnected } = require('../utils/mockStore');
 
 const protect = async (req, res, next) => {
   try {
@@ -14,7 +15,13 @@ const protect = async (req, res, next) => {
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(decoded.id).select('-password -secretKey');
+    let user;
+
+    if (!isDbConnected()) {
+      user = MOCK_USERS.find(u => u._id === decoded.id || u.id === decoded.id);
+    } else {
+      user = await User.findById(decoded.id).select('-password -secretKey');
+    }
 
     if (!user) {
       return res.status(401).json({ message: 'Token is no longer valid.' });
@@ -42,7 +49,11 @@ const optionalAuth = async (req, res, next) => {
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
       const token = req.headers.authorization.split(' ')[1];
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      req.user = await User.findById(decoded.id).select('-password -secretKey');
+      if (!isDbConnected()) {
+        req.user = MOCK_USERS.find(u => u._id === decoded.id || u.id === decoded.id);
+      } else {
+        req.user = await User.findById(decoded.id).select('-password -secretKey');
+      }
     }
   } catch (_) { /* silent */ }
   next();

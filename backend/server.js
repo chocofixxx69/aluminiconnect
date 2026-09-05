@@ -264,38 +264,43 @@ app.use(errorHandler);
 // ─── Database & Server Start ──────────────────────────────────
 const PORT = process.env.PORT || 5000;
 
-const isLocal = process.env.MONGO_URI?.includes('localhost') || process.env.MONGO_URI?.includes('127.0.0.1');
+httpServer.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 
-mongoose.connect(process.env.MONGO_URI, {
-  tls: !isLocal && process.env.MONGO_URI?.startsWith('mongodb+srv'),
-  tlsAllowInvalidCertificates: false,
-  serverSelectionTimeoutMS: 10000,
-  socketTimeoutMS: 45000,
-  family: 4,          // Force IPv4 — avoids common Windows/Atlas IPv6 TLS issues
-})
-  .then(() => {
-    console.log('✅ MongoDB Connected');
-    httpServer.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+if (process.env.MONGO_URI) {
+  const isLocal = process.env.MONGO_URI?.includes('localhost') || process.env.MONGO_URI?.includes('127.0.0.1');
 
-    // ─── Auto Graduation Cron ─────────────────────────────────
-    // Runs every day at midnight (00:00) server time
-    cron.schedule('0 0 * * *', async () => {
-      console.log('[Cron] ⏰ Daily graduation job triggered at', new Date().toISOString());
-      try {
-        const result = await runGraduationJob();
-        console.log(`[Cron] 🎓 Graduation job complete — promoted: ${result.promoted}, skipped: ${result.skipped}, errors: ${result.errors.length}`);
-      } catch (err) {
-        console.error('[Cron] ❌ Graduation job failed:', err.message);
-      }
-    }, {
-      timezone: 'Asia/Kolkata',  // IST — change to match your server timezone
-    });
-    console.log('✅ Graduation cron scheduled (daily 00:00 IST)');
+  mongoose.connect(process.env.MONGO_URI, {
+    tls: !isLocal && process.env.MONGO_URI?.startsWith('mongodb+srv'),
+    tlsAllowInvalidCertificates: false,
+    serverSelectionTimeoutMS: 8000,
+    socketTimeoutMS: 45000,
+    family: 4,          // Force IPv4 — avoids common Windows/Atlas IPv6 TLS issues
   })
-  .catch(err => {
-    console.error('❌ MongoDB Connection Failed:', err.message);
-    process.exit(1);
-  });
+    .then(() => {
+      console.log('✅ MongoDB Connected');
+
+      // ─── Auto Graduation Cron ─────────────────────────────────
+      // Runs every day at midnight (00:00) server time
+      cron.schedule('0 0 * * *', async () => {
+        console.log('[Cron] ⏰ Daily graduation job triggered at', new Date().toISOString());
+        try {
+          const result = await runGraduationJob();
+          console.log(`[Cron] 🎓 Graduation job complete — promoted: ${result.promoted}, skipped: ${result.skipped}, errors: ${result.errors.length}`);
+        } catch (err) {
+          console.error('[Cron] ❌ Graduation job failed:', err.message);
+        }
+      }, {
+        timezone: 'Asia/Kolkata',  // IST — change to match your server timezone
+      });
+      console.log('✅ Graduation cron scheduled (daily 00:00 IST)');
+    })
+    .catch(err => {
+      console.error('⚠️ MongoDB Connection Failed:', err.message);
+      console.warn('⚠️ Server is running, but database operations require a valid MONGO_URI in backend/.env');
+    });
+} else {
+  console.warn('⚠️ MONGO_URI is not set in backend/.env. Server running without MongoDB connection.');
+}
 
 
 module.exports = { app, io };

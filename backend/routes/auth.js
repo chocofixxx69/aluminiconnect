@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const Notification = require('../models/Notification');
 const Connection = require('../models/Connection');
+const { MOCK_USERS, isDbConnected } = require('../utils/mockStore');
 const {
   sendOTPEmail,
   sendApprovalEmail,
@@ -350,6 +351,37 @@ router.post('/login', asyncHandler(async (req, res, next) => {
       message: 'Email and password are required.'
     });
   }
+
+  // ── Database offline fallback for local testing ───────────
+  if (!isDbConnected()) {
+    const mock = MOCK_USERS.find(u => u.email.toLowerCase() === email.toLowerCase());
+    if (!mock) {
+      return res.status(404).json({
+        message: 'User not found with this email.'
+      });
+    }
+    if (role && mock.role !== role) {
+      return res.status(401).json({
+        message: `This account is not registered as ${role}.`
+      });
+    }
+    if (mock.role === 'admin') {
+      const ADMIN_SECRET = process.env.ADMIN_SECRET_KEY || 'MAMCET_ADMIN_2026';
+      if (!secretKey || secretKey !== ADMIN_SECRET) {
+        return res.status(403).json({
+          message: 'Invalid admin secret key. Access denied.'
+        });
+      }
+    }
+    if (password !== mock.password && password !== (process.env.SEED_PASSWORD || 'alumni@123')) {
+      return res.status(401).json({
+        message: 'Incorrect password.'
+      });
+    }
+    const token = signToken(mock._id);
+    return sendAuthResponse(res, 200, mock, token);
+  }
+
   const user = await User.findOne({
     email: email.toLowerCase()
   }).select('+password +tempPassword');

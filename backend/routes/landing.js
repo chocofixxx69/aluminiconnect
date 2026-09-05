@@ -16,8 +16,33 @@ const getDoc = () => LandingPage.getOrCreate();
 //  PUBLIC — read-only (used by the actual landing page)
 // ══════════════════════════════════════════════════════════════
 
+const { isDbConnected } = require('../utils/mockStore');
+
 // GET /api/landing  — all visible sections sorted by order
 router.get('/', asyncHandler(async (req, res, next) => {
+  if (!isDbConnected()) {
+    return res.json({
+      success: true,
+      data: [
+        {
+          sectionKey: 'hero',
+          sectionType: 'hero',
+          label: 'Hero',
+          icon: '🏠',
+          order: 0,
+          isVisible: true,
+          fields: [
+            { key: 'title', label: 'Headline', type: 'text', value: 'Welcome to MAMCET Alumni Connect' },
+            { key: 'subtitle', label: 'Sub-headline', type: 'textarea', value: 'Bridging the gap between students, alumni, and opportunities.' },
+            { key: 'ctaText', label: 'CTA Button Text', type: 'text', value: 'Join the Network' },
+            { key: 'ctaLink', label: 'CTA Link', type: 'url', value: '/register' },
+            { key: 'bgImage', label: 'Background Image URL', type: 'url', value: 'https://res.cloudinary.com/dnby5o1lt/image/upload/v1754489527/alumni_linked_in_background_image_sgla6a.jpg' }
+          ],
+          items: []
+        }
+      ]
+    });
+  }
   const doc = await getDoc();
   const sections = doc.sections.filter(s => s.isVisible).sort((a, b) => a.order - b.order);
   res.json({

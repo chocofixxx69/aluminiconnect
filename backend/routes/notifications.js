@@ -6,10 +6,18 @@ const {
 const asyncHandler = require("../middleware/asyncHandler");
 const router = express.Router();
 
+const { isDbConnected } = require('../utils/mockStore');
+
 // ─── GET /api/notifications/unread-count — lightweight badge ─
 // IMPORTANT: This MUST be defined BEFORE /:id routes to avoid Express
 // matching the literal string "unread-count" as the :id param.
 router.get('/unread-count', protect, asyncHandler(async (req, res, next) => {
+  if (!isDbConnected()) {
+    return res.json({
+      success: true,
+      count: 0
+    });
+  }
   const count = await Notification.countDocuments({
     userId: req.user._id,
     isRead: false
@@ -49,6 +57,13 @@ router.put('/read-all', protect, asyncHandler(async (req, res, next) => {
 
 // ─── GET /api/notifications — Current user's notifications ───
 router.get('/', protect, asyncHandler(async (req, res, next) => {
+  if (!isDbConnected()) {
+    return res.json({
+      success: true,
+      data: [],
+      unreadCount: 0
+    });
+  }
   const notifications = await Notification.find({
     userId: req.user._id
   }).sort({

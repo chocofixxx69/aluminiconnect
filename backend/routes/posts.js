@@ -15,8 +15,19 @@ const {
 const asyncHandler = require("../middleware/asyncHandler");
 const router = express.Router();
 
+const { MOCK_POSTS, isDbConnected } = require('../utils/mockStore');
+
 // ─── GET /api/posts — All posts, newest first (paginated) ─────
 router.get('/', optionalAuth, asyncHandler(async (req, res, next) => {
+  if (!isDbConnected()) {
+    return res.json({
+      success: true,
+      data: MOCK_POSTS,
+      total: MOCK_POSTS.length,
+      page: 1,
+      totalPages: 1
+    });
+  }
   const page = Math.max(1, parseInt(req.query.page) || 1);
   const limit = Math.min(50, Math.max(1, parseInt(req.query.limit) || 20));
   const skip = (page - 1) * limit;

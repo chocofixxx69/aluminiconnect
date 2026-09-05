@@ -13,8 +13,17 @@ const {
 const asyncHandler = require("../middleware/asyncHandler");
 const router = express.Router();
 
+const { MOCK_EVENTS, isDbConnected } = require('../utils/mockStore');
+
 // ─── GET /api/events — All approved events ───────────────────
 router.get('/', optionalAuth, asyncHandler(async (req, res, next) => {
+  if (!isDbConnected()) {
+    return res.json({
+      success: true,
+      count: MOCK_EVENTS.length,
+      data: MOCK_EVENTS
+    });
+  }
   const {
     category,
     search

@@ -13,8 +13,17 @@ const {
 const asyncHandler = require("../middleware/asyncHandler");
 const router = express.Router();
 
+const { MOCK_JOBS, isDbConnected } = require('../utils/mockStore');
+
 // ─── GET /api/jobs — All approved jobs, newest first ───────────
 router.get('/', optionalAuth, asyncHandler(async (req, res, next) => {
+  if (!isDbConnected()) {
+    return res.json({
+      success: true,
+      count: MOCK_JOBS.length,
+      data: MOCK_JOBS
+    });
+  }
   const {
     type,
     location: loc,
