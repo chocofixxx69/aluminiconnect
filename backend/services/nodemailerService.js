@@ -33,7 +33,7 @@ const getOAuth2Client = () => {
  */
 const buildRawMessage = (to, subject, html, fromAddress) => {
   const lines = [
-    `From: "MAMCET Alumni Connect" <${fromAddress}>`,
+    `From: "AITM Alumni Connect" <${fromAddress}>`,
     `To: ${to}`,
     `Subject: ${subject}`,
     'MIME-Version: 1.0',

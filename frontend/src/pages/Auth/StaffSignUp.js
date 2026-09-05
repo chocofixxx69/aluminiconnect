@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { authService } from '../../services/api';
 import { ClipLoader } from 'react-spinners';
 import toast, { Toaster } from 'react-hot-toast';
+import AuthVideoBackground from '../../components/common/AuthVideoBackground';
 import '../../styles/Auth.css';
 
 const DEPARTMENTS = [
@@ -96,22 +97,24 @@ const StaffSignUp = () => {
 
   /* ────────────────────────── RENDER ────────────────────────── */
   return (
-    <div className="signup-background py-5">
-      <Link to="/register" className="back-btn-circle" title="Back to Selection">
+    <div className="signup-background py-5 position-relative">
+      <AuthVideoBackground />
+      <Link to="/register" className="back-btn-circle" title="Back to Selection" style={{ zIndex: 10 }}>
         <i className="fas fa-arrow-left" />
       </Link>
       <Toaster position="top-center" />
 
-      <div className="container d-flex justify-content-center">
+      <div className="container d-flex justify-content-center position-relative" style={{ zIndex: 2 }}>
         <div className="form-glass-container p-4 p-md-5">
 
           {/* ── Brand header ── */}
           <div className="text-center mb-5">
             <div className="brand-logo-container mb-3">
               <img
-                src="https://res.cloudinary.com/dnby5o1lt/image/upload/v1754489527/ALUMINI_CONNECT_LOGO_hwlrpw.png"
-                alt="MAMCET"
-                width={42}
+                src="/aitm-logo.png"
+                alt="AITM Bhatkal"
+                width={50}
+                height={50}
                 style={{ objectFit: 'contain' }}
               />
               <span className="ms-2 brand-name-red fw-bold" style={{ fontSize: 15 }}>ALUMNI CONNECT</span>
@@ -127,7 +130,7 @@ const StaffSignUp = () => {
             ) : (
               <>
                 <h2 className="fw-bold">Staff Registration</h2>
-                <p className="text-muted small">For Principals, HODs &amp; Faculty of MAMCET</p>
+                <p className="text-muted small">For Principals, HODs &amp; Faculty of AITM Bhatkal</p>
               </>
             )}
           </div>
@@ -141,7 +144,7 @@ const StaffSignUp = () => {
               <h5 className="fw-bold mb-2">Awaiting Admin Approval</h5>
               <p className="text-muted mb-4" style={{ fontSize: 14 }}>
                 Your email has been verified. Your staff account is now{' '}
-                <strong>under review</strong> by the MAMCET admin team.
+                <strong>under review</strong> by the AITM admin team.
                 You will receive an email once your account is activated.
               </p>
               <div

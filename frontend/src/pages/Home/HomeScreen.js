@@ -16,9 +16,9 @@ const FALLBACK_GALLERY = [
 ];
 
 const FALLBACK_EVENTS = [
-  { tag: "Annual Meet", title: "Alumni Network Night", bgColor: "#a2d2ff", date: "April 15, 2026", venue: "MAMCET Main Auditorium, Trichy", time: "6:00 PM – 9:00 PM", desc: "Reconnect with your batch mates and expand your professional circle at this exclusive Alumni Networking Night." },
-  { tag: "Annual Event", title: "Annual Alumni Meet 2026", bgColor: "#bde0fe", date: "May 20, 2026", venue: "MAMCET Sports Complex, Trichy", time: "10:00 AM – 5:00 PM", desc: "The biggest gathering of the year! Join us for a day of celebrations, cultural programs, sports activities, and memories." },
-  { tag: "Career Fair", title: "Campus Career Fair", bgColor: "#ffafcc", date: "June 5, 2026", venue: "MAMCET Seminar Hall", time: "9:00 AM – 4:00 PM", desc: "Top companies recruiting directly from campus. Bring your resume, dress sharp, and walk in with confidence." },
+  { tag: "Annual Meet", title: "Alumni Network Night", bgColor: "#a2d2ff", date: "April 15, 2026", venue: "AITM Main Auditorium, Bhatkal", time: "6:00 PM – 9:00 PM", desc: "Reconnect with your batch mates and expand your professional circle at this exclusive Alumni Networking Night." },
+  { tag: "Annual Event", title: "Annual Alumni Meet 2026", bgColor: "#bde0fe", date: "May 20, 2026", venue: "AITM Campus Grounds, Bhatkal", time: "10:00 AM – 5:00 PM", desc: "The biggest gathering of the year! Join us for a day of celebrations, cultural programs, sports activities, and memories." },
+  { tag: "Career Fair", title: "Campus Career Fair", bgColor: "#ffafcc", date: "June 5, 2026", venue: "AITM Seminar Hall, Bhatkal", time: "9:00 AM – 4:00 PM", desc: "Top companies recruiting directly from campus. Bring your resume, dress sharp, and walk in with confidence." },
 ];
 
 const CAROUSEL_RESPONSIVE = {
@@ -27,7 +27,7 @@ const CAROUSEL_RESPONSIVE = {
   mobile: { breakpoint: { max: 640, min: 0 }, items: 1, slidesToSlide: 1 }
 };
 
-const DEFAULT_BG_IMAGE = 'https://res.cloudinary.com/dnby5o1lt/image/upload/v1754489527/alumni_linked_in_background_image_sgla6a.jpg';
+const DEFAULT_BG_IMAGE = '';
 
 // Framer motion variants
 const heroTextVariants = {
@@ -68,7 +68,7 @@ const HomeScreen = () => {
 
   // ─── HERO ──────────────────────────────────────────────
   const hero = cms?.hero;
-  const heroTitle    = hero ? fv(hero.fields, 'title',    'Connect With MAMCET') : 'Connect With MAMCET';
+  const heroTitle    = hero ? fv(hero.fields, 'title',    'Connect With AITM Bhatkal') : 'Connect With AITM Bhatkal';
   const heroSubtitle = hero ? fv(hero.fields, 'subtitle', 'Join 5,000+ alumni, stay connected, discover opportunities and give back to your alma mater.') : 'Join 5,000+ alumni, stay connected, discover opportunities and give back to your alma mater.';
   const heroCtaText  = hero ? fv(hero.fields, 'ctaText',  'Join Now') : 'Join Now';
   const heroCtaLink  = hero ? fv(hero.fields, 'ctaLink',  '/register') : '/register';
@@ -96,7 +96,7 @@ const HomeScreen = () => {
   // ─── TESTIMONIALS ──────────────────────────────────────
   const testimonials = cms?.testimonials;
   const testimonialsItems = testimonials?.items || [
-    { fields: [{ key: 'name', value: 'Bharath J' }, { key: 'role', value: 'Software Engineer – Amazon, 2022 Batch' }, { key: 'quote', value: '"The MAMCET Alumni Connect platform has been instrumental in reconnecting me with old friends and expanding my professional network."' }] },
+    { fields: [{ key: 'name', value: 'Bharath J' }, { key: 'role', value: 'Software Engineer – Amazon, 2022 Batch' }, { key: 'quote', value: '"The AITM Alumni Connect platform has been instrumental in reconnecting me with old friends and expanding my professional network."' }] },
   ];
 
   // ─── EVENTS (CMS-managed) ──────────────────────────────
@@ -130,10 +130,10 @@ const HomeScreen = () => {
 
   // ─── FOOTER ────────────────────────────────────────────
   const footer = cms?.footer;
-  const footerEmail     = footer ? fv(footer.fields, 'email',     'alumni@mamcet.com')  : 'alumni@mamcet.com';
-  const footerPhone     = footer ? fv(footer.fields, 'phone',     '8088077077')         : '8088077077';
-  const footerAddress   = footer ? fv(footer.fields, 'address',   'Chennai Trunk Road, Siruganur, Trichy - 621105') : 'Chennai Trunk Road, Siruganur, Trichy - 621105';
-  const footerCopyright = footer ? fv(footer.fields, 'copyright', '© 2025 MAMCET Alumni Connect. All rights reserved.') : '© 2025 MAMCET Alumni Connect. All rights reserved.';
+  const footerEmail     = footer ? fv(footer.fields, 'email',     'alumni@aitm.ac.in')  : 'alumni@aitm.ac.in';
+  const footerPhone     = footer ? fv(footer.fields, 'phone',     '+91 8386 226554')         : '+91 8386 226554';
+  const footerAddress   = footer ? fv(footer.fields, 'address',   'Anjumanabad, P.O. Box: 24, Bhatkal, Karnataka - 581320') : 'Anjumanabad, P.O. Box: 24, Bhatkal, Karnataka - 581320';
+  const footerCopyright = footer ? fv(footer.fields, 'copyright', '© 2026 Anjuman Institute of Technology and Management (AITM), Bhatkal. All rights reserved.') : '© 2026 Anjuman Institute of Technology and Management (AITM), Bhatkal. All rights reserved.';
   const footerTagline   = footer ? fv(footer.fields, 'tagline',   '') : '';
 
   // ─── Dynamic hero background style ─────────────────────
@@ -151,7 +151,40 @@ const HomeScreen = () => {
       {/* ===== HERO SECTION ===== */}
       {(!cms || cms.hero) && (
         <section className="hero-landing position-relative overflow-hidden" style={heroStyle}>
-          <div className="hero-mask" />
+          {/* Hero Video Background */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster={heroBgImage}
+            className="hero-video-bg"
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              minWidth: '100%',
+              minHeight: '100%',
+              width: 'auto',
+              height: 'auto',
+              transform: 'translate(-50%, -50%)',
+              objectFit: 'cover',
+              zIndex: 0,
+              pointerEvents: 'none'
+            }}
+          >
+            <source src="/videos/hero-video.mp4" type="video/mp4" />
+          </video>
+
+          <div
+            className="hero-mask"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(180deg, rgba(15, 12, 29, 0.7) 0%, rgba(15, 12, 29, 0.6) 50%, rgba(15, 12, 29, 0.85) 100%)',
+              zIndex: 1
+            }}
+          />
 
           <motion.div
             className="hero-deco-circle hero-deco-circle--1"
@@ -172,7 +205,7 @@ const HomeScreen = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              MAMCET ALUMNI NETWORK
+              AITM ALUMNI NETWORK
             </motion.span>
 
             <motion.h1
@@ -378,6 +411,14 @@ const HomeScreen = () => {
       {(!cms || cms.footer) && (
         <footer className="footer-site-main bg-dark text-white py-5" id="contact">
           <div className="container text-center">
+            <div className="mb-3 d-flex justify-content-center">
+              <img
+                src="/aitm-logo.png"
+                alt="AITM Bhatkal Logo"
+                style={{ width: '64px', height: '64px', objectFit: 'contain' }}
+              />
+            </div>
+            <h5 className="fw-bold mb-3" style={{ letterSpacing: '0.5px' }}>Anjuman Institute of Technology and Management, Bhatkal</h5>
             {footerTagline && <p className="mb-3 fw-bold">{footerTagline}</p>}
             <p className="mb-2">For direct inquiries, contact us at <a href={`mailto:${footerEmail}`} className="brand-red-link">{footerEmail}</a></p>
             <p className="mb-2">Phone: <span className="fw-bold">{footerPhone}</span></p>

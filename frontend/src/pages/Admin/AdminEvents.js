@@ -94,7 +94,7 @@ const EventFormModal = ({ event, onClose, onSave, saving }) => {
             </div>
             <div className="am-field am-field-full">
               <label>Venue / Location</label>
-              <input value={form.venue} onChange={e => set('venue', e.target.value)} placeholder="e.g. MAMCET Auditorium / Online (Zoom)" />
+              <input value={form.venue} onChange={e => set('venue', e.target.value)} placeholder="e.g. AITM Auditorium / Online (Zoom)" />
             </div>
             <div className="am-field am-field-full">
               <label>Description</label>

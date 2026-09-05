@@ -2,8 +2,7 @@
 .hero-section {
   position: relative;
   height: 80vh;
-  background: url('https://res.cloudinary.com/dnby5o1lt/image/upload/v1754489527/alumni_linked_in_background_image_sgla6a.jpg') no-repeat center center/cover;
-  background-attachment: fixed;
+  background: #0f172a;
 }
 
 .hero-overlay {

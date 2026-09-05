@@ -1,7 +1,11 @@
 /* src/styles/Navbar.css */
 .navbar {
-  padding: 15px 0;
-  background-color: #fff !important;
+  padding: 10px 0;
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--line, #e9e7ee);
+  box-shadow: 0 2px 12px rgba(16, 24, 40, 0.04) !important;
 }
 
 .logo-img {
@@ -33,10 +37,29 @@
   color: white;
 }
 
+/* ── Primary dashboard nav tabs ── */
+.nav-tab-item {
+  border-radius: var(--radius-pill, 999px);
+  padding: 6px 14px !important;
+  transition: background-color .18s ease, color .18s ease;
+}
+
+.nav-tab-item:hover {
+  background-color: var(--surface-muted, #f7f6fb);
+}
+
+.nav-tab-item.active-tab {
+  background-color: var(--brand-soft, rgba(200,64,34,.08));
+}
+
 /* Bottom Nav Styling */
 .bottom-nav {
   height: 60px;
   z-index: 1050;
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  box-shadow: 0 -2px 14px rgba(16, 24, 40, 0.06);
 }
 
 .bottom-nav .nav-item {

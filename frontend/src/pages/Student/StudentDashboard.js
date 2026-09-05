@@ -329,15 +329,23 @@ const StudentDashboard = () => {
             <div className="container">
                 {/* Welcome Banner */}
                 <motion.div
-                    className="rounded-4 mb-4 px-4 py-3 d-flex align-items-center gap-3"
-                    style={{ background: 'linear-gradient(135deg, #c84022 0%, #e85d38 100%)', color: '#fff' }}
+                    className="mb-4 px-4 py-4 d-flex align-items-center gap-3 position-relative overflow-hidden"
+                    style={{
+                        background: 'linear-gradient(120deg, #c84022 0%, #e0603a 60%, #e8935f 130%)',
+                        color: '#fff',
+                        borderRadius: 20,
+                        boxShadow: '0 16px 40px rgba(200,64,34,0.22)',
+                    }}
                     initial={{ opacity: 0, y: -16 }}
                     animate={{ opacity: 1, y: 0 }}
                 >
-                    <FaGraduationCap size={32} />
-                    <div>
-                        <div className="fw-bold" style={{ fontSize: 18 }}>Welcome back, {user?.name?.split(' ')[0] || 'Student'}! 👋</div>
-                        <div style={{ fontSize: 13, opacity: 0.9 }}>Explore jobs, events, and connect with alumni from your network.</div>
+                    <div style={{ position: 'absolute', top: -70, right: -50, width: 220, height: 220, borderRadius: '50%', background: 'rgba(255,255,255,0.08)' }} />
+                    <div className="d-flex align-items-center justify-content-center flex-shrink-0" style={{ width: 52, height: 52, borderRadius: 15, background: 'rgba(255,255,255,0.16)', position: 'relative' }}>
+                        <FaGraduationCap size={24} />
+                    </div>
+                    <div style={{ position: 'relative' }}>
+                        <div className="fw-bold" style={{ fontSize: 19 }}>Welcome back, {user?.name?.split(' ')[0] || 'Student'} 👋</div>
+                        <div style={{ fontSize: 13, opacity: 0.92, marginTop: 2 }}>Explore jobs, events, and connect with alumni from your network.</div>
                     </div>
                 </motion.div>
 
@@ -381,9 +389,12 @@ const StudentDashboard = () => {
                                     </div>
                                 </>
                             ) : (
-                                <div className="text-center p-5 bg-white rounded-4 shadow-sm border-0">
-                                    <FaUserFriends size={36} className="text-muted mb-3 opacity-50" />
-                                    <p className="text-muted mb-0">No posts yet. Connect with alumni to see their updates!</p>
+                                <div className="section-card empty-state">
+                                    <div className="empty-state-icon" style={{ width: 52, height: 52 }}>
+                                        <FaUserFriends size={20} />
+                                    </div>
+                                    <div className="empty-state-title">No posts yet</div>
+                                    <div className="empty-state-sub">Connect with alumni to see their updates here.</div>
                                 </div>
                             )}
                         </div>

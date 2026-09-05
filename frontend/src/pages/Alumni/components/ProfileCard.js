@@ -8,12 +8,15 @@ const ProfileCard = ({ user }) => {
             : null;
 
     return (
-        <div className="dashboard-card bg-white shadow-sm overflow-hidden mb-4 rounded-3 border-0">
-            <div className="profile-card-header bg-mamcet-red" style={{ height: '60px' }}></div>
-            <div className="text-center px-3 pb-3" style={{ marginTop: '-30px' }}>
+        <div className="dashboard-card bg-white overflow-hidden mb-4 border-0">
+            <div
+                className="profile-card-header"
+                style={{ height: '68px', background: 'linear-gradient(120deg, #c84022 0%, #e0603a 60%, #e8935f 130%)' }}
+            ></div>
+            <div className="text-center px-3 pb-3" style={{ marginTop: '-34px' }}>
                 <Link to={`/profile/${user?._id || user?.id}`} className="text-decoration-none">
-                    <div className="avatar-md mx-auto bg-white border rounded-circle d-flex align-items-center justify-content-center shadow-sm"
-                        style={{ width: '72px', height: '72px', overflow: 'hidden' }}>
+                    <div className="avatar-md mx-auto bg-white border border-3 border-white rounded-circle d-flex align-items-center justify-content-center"
+                        style={{ width: '72px', height: '72px', overflow: 'hidden', boxShadow: '0 4px 14px rgba(0,0,0,0.12)' }}>
                         {picUrl ? (
                             <img src={picUrl} alt={user.name} className="w-100 h-100 object-fit-cover" />
                         ) : (
@@ -27,11 +30,11 @@ const ProfileCard = ({ user }) => {
                 <div className="divider-line my-2"></div>
 
                 <div className="text-start">
-                    <div className="d-flex justify-content-between align-items-center py-1 hover-bg-light rounded cursor-pointer">
+                    <div className="d-flex justify-content-between align-items-center py-2 px-2 hover-bg-light rounded-3 cursor-pointer">
                         <span className="extra-small text-muted fw-bold">Profile viewers</span>
                         <span className="extra-small text-mamcet-red fw-bold">{user.views}</span>
                     </div>
-                    <div className="d-flex justify-content-between align-items-center py-1 hover-bg-light rounded cursor-pointer">
+                    <div className="d-flex justify-content-between align-items-center py-2 px-2 hover-bg-light rounded-3 cursor-pointer">
                         <span className="extra-small text-muted fw-bold">Connections</span>
                         <span className="extra-small text-mamcet-red fw-bold">{(Array.isArray(user.connections) ? user.connections.length : user.connections) || 0}</span>
                     </div>
@@ -40,7 +43,7 @@ const ProfileCard = ({ user }) => {
                 <div className="divider-line my-2"></div>
 
                 <div className="text-start mt-2">
-                    <Link to="/jobs" className="d-flex align-items-center text-decoration-none py-1 text-muted hover-bg-light rounded">
+                    <Link to="/jobs" className="d-flex align-items-center text-decoration-none py-2 px-2 text-muted hover-bg-light rounded-3">
                         <i className="fas fa-bookmark me-2 text-mamcet-red extra-small"></i>
                         <span className="extra-small fw-bold">My items</span>
                     </Link>

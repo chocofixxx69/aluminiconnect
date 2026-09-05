@@ -10,7 +10,7 @@ import {
 import {
   FaUsers, FaGraduationCap, FaBriefcase, FaChartBar,
   FaFilter, FaSync, FaCheckCircle, FaTimesCircle,
-  FaChalkboardTeacher, FaFileAlt
+  FaChalkboardTeacher, FaFileAlt, FaChevronUp, FaChevronDown,
 } from 'react-icons/fa';
 
 // ─── Constants ────────────────────────────────────────────────
@@ -33,25 +33,27 @@ const STAFF_GREEN = '#1a6b4a';
 const PIE_COLORS  = [STAFF_GREEN, '#e05252', '#f5a623', '#378fe9', '#9b59b6'];
 
 // ─── Stat Card component ──────────────────────────────────────
-const StatCard = ({ icon: Icon, label, value, color, sub }) => (
+const StatCard = ({ icon: Icon, label, value, color, sub, loading }) => (
   <motion.div
-    className="bg-white rounded-4 shadow-sm p-3 d-flex align-items-center gap-3"
+    className="stat-tile bg-white d-flex align-items-center gap-3"
     initial={{ opacity: 0, y: 10 }}
     animate={{ opacity: 1, y: 0 }}
-    whileHover={{ y: -3, boxShadow: '0 8px 24px rgba(0,0,0,.10)' }}
     transition={{ type: 'spring', stiffness: 280, damping: 20 }}
-    style={{ border: `2px solid ${color}20` }}
   >
     <div
-      className="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
-      style={{ width: 48, height: 48, background: `${color}18` }}
+      className="rounded-4 d-flex align-items-center justify-content-center flex-shrink-0"
+      style={{ width: 50, height: 50, background: `${color}16` }}
     >
       <Icon size={20} style={{ color }} />
     </div>
-    <div>
-      <div className="fw-bold" style={{ fontSize: 22 }}>{value ?? '—'}</div>
-      <div className="text-muted" style={{ fontSize: 12 }}>{label}</div>
-      {sub && <div style={{ fontSize: 11, color }}>{sub}</div>}
+    <div className="flex-grow-1" style={{ minWidth: 0 }}>
+      {loading ? (
+        <div style={{ height: 22, width: 40, background: '#f0f0f0', borderRadius: 6 }} />
+      ) : (
+        <div className="fw-bold" style={{ fontSize: 24, color: '#1c1f2b', lineHeight: 1.15 }}>{value ?? 0}</div>
+      )}
+      <div className="text-muted text-truncate" style={{ fontSize: 12, fontWeight: 600 }}>{label}</div>
+      {sub && <div style={{ fontSize: 11, color, fontWeight: 700 }}>{sub}</div>}
     </div>
   </motion.div>
 );
@@ -59,8 +61,21 @@ const StatCard = ({ icon: Icon, label, value, color, sub }) => (
 // ─── Section header ───────────────────────────────────────────
 const SectionHeader = ({ icon: Icon, title, color = MAMCET_RED }) => (
   <div className="d-flex align-items-center gap-2 mb-3">
-    <Icon size={18} style={{ color }} />
-    <h6 className="fw-bold mb-0" style={{ color }}>{title}</h6>
+    <div className="d-flex align-items-center justify-content-center rounded-3 flex-shrink-0" style={{ width: 30, height: 30, background: `${color}16` }}>
+      <Icon size={14} style={{ color }} />
+    </div>
+    <h6 className="fw-bold mb-0" style={{ color: '#1c1f2b', fontSize: 14.5 }}>{title}</h6>
+  </div>
+);
+
+// ─── Empty state (inline, matches global .empty-state visual language) ──
+const StaffEmptyState = ({ icon: Icon, title, sub }) => (
+  <div className="empty-state">
+    <div className="empty-state-icon" style={{ width: 50, height: 50 }}>
+      <Icon size={18} />
+    </div>
+    <div className="empty-state-title">{title}</div>
+    {sub && <div className="empty-state-sub">{sub}</div>}
   </div>
 );
 
@@ -145,25 +160,33 @@ const StaffDashboard = () => {
 
         {/* ═══════════════════════════ HEADER ═══════════════════════════ */}
         <motion.div
-          className="rounded-4 mb-4 px-4 py-3 d-flex align-items-center gap-3 flex-wrap"
-          style={{ background: `linear-gradient(135deg, ${STAFF_GREEN} 0%, #258a5f 100%)`, color: '#fff' }}
+          className="mb-4 px-4 py-4 d-flex align-items-center gap-3 flex-wrap position-relative overflow-hidden"
+          style={{
+            background: `linear-gradient(120deg, ${STAFF_GREEN} 0%, #1f9d6b 130%)`,
+            color: '#fff',
+            borderRadius: 20,
+            boxShadow: `0 16px 40px ${STAFF_GREEN}33`,
+          }}
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <FaChalkboardTeacher size={36} />
-          <div>
+          <div style={{ position: 'absolute', top: -70, right: -50, width: 220, height: 220, borderRadius: '50%', background: 'rgba(255,255,255,0.07)' }} />
+          <div className="d-flex align-items-center justify-content-center flex-shrink-0" style={{ width: 52, height: 52, borderRadius: 15, background: 'rgba(255,255,255,0.16)', position: 'relative' }}>
+            <FaChalkboardTeacher size={24} />
+          </div>
+          <div style={{ position: 'relative' }}>
             <div className="fw-bold" style={{ fontSize: 19 }}>
               Staff Dashboard — {user?.designation || 'Coordinator'}
             </div>
-            <div style={{ fontSize: 13, opacity: 0.9 }}>
-              {user?.name} &bull; {user?.department || 'MAMCET'}
+            <div style={{ fontSize: 13, opacity: 0.9, marginTop: 2 }}>
+              {user?.name} &bull; {user?.department || 'AITM'}
             </div>
           </div>
-          <div className="ms-auto d-flex gap-2 flex-wrap">
+          <div className="ms-auto d-flex gap-2 flex-wrap" style={{ position: 'relative' }}>
             <button
-              className="btn btn-sm btn-light rounded-pill d-flex align-items-center gap-1"
+              className="btn btn-sm btn-light rounded-pill d-flex align-items-center gap-2 fw-semibold"
               onClick={fetchStudents}
-              style={{ fontSize: 12 }}
+              style={{ fontSize: 12, padding: '8px 16px' }}
             >
               <FaSync size={11} /> Refresh
             </button>
@@ -173,17 +196,18 @@ const StaffDashboard = () => {
         {/* ════════════════════════ STAT SUMMARY CARDS ════════════════════ */}
         <div className="row g-3 mb-4">
           <div className="col-6 col-md-3">
-            <StatCard icon={FaUsers}       label="Total Students" value={totals.students} color={STAFF_GREEN} />
+            <StatCard icon={FaUsers}       label="Total Students" value={totals.students} color={STAFF_GREEN} loading={loadingAnalytics} />
           </div>
           <div className="col-6 col-md-3">
-            <StatCard icon={FaGraduationCap} label="Total Alumni"    value={totals.alumni}   color={MAMCET_RED}  />
+            <StatCard icon={FaGraduationCap} label="Total Alumni"    value={totals.alumni}   color={MAMCET_RED}  loading={loadingAnalytics} />
           </div>
           <div className="col-6 col-md-3">
-            <StatCard icon={FaFileAlt}     label="Total Posts"     value={totals.posts}    color="#378fe9"     />
+            <StatCard icon={FaFileAlt}     label="Total Posts"     value={totals.posts}    color="#378fe9"     loading={loadingAnalytics} />
           </div>
           <div className="col-6 col-md-3">
             <StatCard icon={FaBriefcase}   label="Job Postings"    value={jobReport?.totalJobs} color="#f5a623"
               sub={jobReport ? `${jobReport.approvedJobs} approved` : undefined}
+              loading={loadingJobs}
             />
           </div>
         </div>
@@ -195,23 +219,23 @@ const StaffDashboard = () => {
 
             {/* ── SECTION 1: Filter Panel ── */}
             <motion.div
-              className="bg-white rounded-4 shadow-sm mb-4"
+              className="section-card mb-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
-              <div
-                className="d-flex align-items-center justify-content-between px-4 py-3 cursor-pointer"
+              <button
+                className="d-flex align-items-center justify-content-between w-100 px-4 py-3 border-0 bg-transparent"
                 onClick={() => setFiltersOpen(o => !o)}
                 style={{ cursor: 'pointer' }}
               >
                 <div className="d-flex align-items-center gap-2 fw-bold" style={{ fontSize: 14, color: STAFF_GREEN }}>
                   <FaFilter size={14} /> Filter Students
                 </div>
-                <i className={`fas fa-chevron-${filtersOpen ? 'up' : 'down'} text-muted`} style={{ fontSize: 12 }} />
-              </div>
+                {filtersOpen ? <FaChevronUp size={12} className="text-muted" /> : <FaChevronDown size={12} className="text-muted" />}
+              </button>
 
               {filtersOpen && (
-                <div className="px-4 pb-4">
+                <div className="px-4 pb-4" style={{ borderTop: '1px solid var(--line-soft)', paddingTop: 16 }}>
                   <div className="row g-3 align-items-end">
                     <div className="col-12 col-sm-6 col-md-3">
                       <label className="form-label small fw-semibold text-muted">Department</label>
@@ -256,7 +280,8 @@ const StaffDashboard = () => {
 
             {/* ── SECTION 2: Student List ── */}
             <motion.div
-              className="bg-white rounded-4 shadow-sm mb-4"
+              className="section-card mb-4"
+              style={{ overflow: 'hidden' }}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
             >
@@ -269,22 +294,19 @@ const StaffDashboard = () => {
                   <ClipLoader color={STAFF_GREEN} size={36} />
                 </div>
               ) : filtered.length === 0 ? (
-                <div className="text-center py-5 text-muted">
-                  <FaUsers size={32} className="mb-2 opacity-25" />
-                  <p className="mb-0">No students found for selected filters.</p>
-                </div>
+                <StaffEmptyState icon={FaUsers} title="No students found" sub="Try adjusting the filters above." />
               ) : (
                 <div style={{ overflowX: 'auto' }}>
                   <table className="table table-hover mb-0" style={{ fontSize: 13 }}>
-                    <thead style={{ background: '#f8f9fa' }}>
+                    <thead style={{ background: 'var(--surface-muted, #f7f6fb)' }}>
                       <tr>
-                        <th className="fw-semibold border-0 ps-4">Name</th>
-                        <th className="fw-semibold border-0">Department</th>
-                        <th className="fw-semibold border-0">Year</th>
-                        <th className="fw-semibold border-0">Role</th>
-                        <th className="fw-semibold border-0">Posts</th>
-                        <th className="fw-semibold border-0">Last Active</th>
-                        <th className="fw-semibold border-0">Status</th>
+                        <th className="fw-semibold border-0 ps-4 text-uppercase text-muted" style={{ fontSize: 11, letterSpacing: '0.4px' }}>Name</th>
+                        <th className="fw-semibold border-0 text-uppercase text-muted" style={{ fontSize: 11, letterSpacing: '0.4px' }}>Department</th>
+                        <th className="fw-semibold border-0 text-uppercase text-muted" style={{ fontSize: 11, letterSpacing: '0.4px' }}>Year</th>
+                        <th className="fw-semibold border-0 text-uppercase text-muted" style={{ fontSize: 11, letterSpacing: '0.4px' }}>Role</th>
+                        <th className="fw-semibold border-0 text-uppercase text-muted" style={{ fontSize: 11, letterSpacing: '0.4px' }}>Posts</th>
+                        <th className="fw-semibold border-0 text-uppercase text-muted" style={{ fontSize: 11, letterSpacing: '0.4px' }}>Last Active</th>
+                        <th className="fw-semibold border-0 text-uppercase text-muted pe-4" style={{ fontSize: 11, letterSpacing: '0.4px' }}>Status</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -294,14 +316,14 @@ const StaffDashboard = () => {
                             <div className="d-flex align-items-center gap-2">
                               <div
                                 className="rounded-circle flex-shrink-0 d-flex align-items-center justify-content-center fw-bold text-white"
-                                style={{ width: 32, height: 32, background: MAMCET_RED, fontSize: 13, overflow: 'hidden' }}
+                                style={{ width: 34, height: 34, background: MAMCET_RED, fontSize: 13, overflow: 'hidden' }}
                               >
                                 {s.profilePic
                                   ? <img src={s.profilePic} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                   : s.name?.[0]?.toUpperCase()}
                               </div>
                               <div>
-                                <div className="fw-semibold">{s.name}</div>
+                                <div className="fw-semibold" style={{ color: '#1c1f2b' }}>{s.name}</div>
                                 <div className="text-muted" style={{ fontSize: 11 }}>{s.email}</div>
                               </div>
                             </div>
@@ -309,17 +331,17 @@ const StaffDashboard = () => {
                           <td className="align-middle text-muted">{s.department || '—'}</td>
                           <td className="align-middle text-muted">{s.batch || '—'}</td>
                           <td className="align-middle">
-                            <span className="badge rounded-pill px-2"
-                              style={{ fontSize: 11, background: s.role === 'alumni' ? '#cce5ff' : '#d4edda', color: s.role === 'alumni' ? '#004085' : '#155724' }}
+                            <span className="badge rounded-pill px-2 fw-semibold"
+                              style={{ fontSize: 11, background: s.role === 'alumni' ? '#e5eeff' : '#e3f6e9', color: s.role === 'alumni' ? '#2d5bd7' : '#1a8a4d' }}
                             >
                               {s.role}
                             </span>
                           </td>
-                          <td className="align-middle fw-bold">{s.postCount}</td>
+                          <td className="align-middle fw-bold" style={{ color: '#1c1f2b' }}>{s.postCount}</td>
                           <td className="align-middle text-muted" style={{ fontSize: 11 }}>
                             {s.lastLogin ? new Date(s.lastLogin).toLocaleDateString() : 'Never'}
                           </td>
-                          <td className="align-middle"><StatusBadge status={s.status} /></td>
+                          <td className="align-middle pe-4"><StatusBadge status={s.status} /></td>
                         </tr>
                       ))}
                     </tbody>
@@ -330,7 +352,7 @@ const StaffDashboard = () => {
 
             {/* ── SECTION 4: Job Report ── */}
             <motion.div
-              className="bg-white rounded-4 shadow-sm mb-4 p-4"
+              className="section-card mb-4 p-4"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
@@ -340,7 +362,7 @@ const StaffDashboard = () => {
               {loadingJobs ? (
                 <div className="text-center py-4"><ClipLoader color="#f5a623" size={28} /></div>
               ) : !jobReport ? (
-                <p className="text-muted small">Could not load job report.</p>
+                <StaffEmptyState icon={FaBriefcase} title="No job report available" sub="Data will appear once jobs are posted." />
               ) : (
                 <>
                   <div className="row g-3 mb-4">
@@ -351,9 +373,9 @@ const StaffDashboard = () => {
                       { label: 'Unique Applicants',    value: jobReport.totalApplicants, color: '#378fe9' },
                     ].map(c => (
                       <div className="col-6 col-md-3" key={c.label}>
-                        <div className="rounded-3 text-center p-3" style={{ background: `${c.color}12`, border: `1px solid ${c.color}30` }}>
-                          <div className="fw-bold" style={{ fontSize: 24, color: c.color }}>{c.value ?? '—'}</div>
-                          <div className="text-muted" style={{ fontSize: 11 }}>{c.label}</div>
+                        <div className="rounded-4 text-center p-3" style={{ background: `${c.color}0f`, border: `1px solid ${c.color}28` }}>
+                          <div className="fw-bold" style={{ fontSize: 24, color: c.color }}>{c.value ?? 0}</div>
+                          <div className="text-muted fw-semibold" style={{ fontSize: 11 }}>{c.label}</div>
                         </div>
                       </div>
                     ))}
@@ -405,7 +427,7 @@ const StaffDashboard = () => {
 
             {/* ── SECTION 3: Student Activity — top posters ── */}
             <motion.div
-              className="bg-white rounded-4 shadow-sm p-4 mb-4"
+              className="section-card p-4 mb-4"
               initial={{ opacity: 0, x: 16 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.05 }}
@@ -413,10 +435,12 @@ const StaffDashboard = () => {
               <SectionHeader icon={FaFileAlt} title="Most Active Members" color="#378fe9" />
               {loadingStudents ? (
                 <div className="text-center py-3"><ClipLoader color="#378fe9" size={24} /></div>
+              ) : students.length === 0 || students.every(s => s.postCount === 0) ? (
+                <StaffEmptyState icon={FaFileAlt} title="No post activity yet" />
               ) : (
                 <div className="d-flex flex-column gap-2">
                   {[...students].sort((a, b) => b.postCount - a.postCount).slice(0, 6).map((s, i) => (
-                    <div key={s._id} className="d-flex align-items-center gap-2 justify-content-between">
+                    <div key={s._id} className="d-flex align-items-center gap-2 justify-content-between py-1">
                       <div className="d-flex align-items-center gap-2">
                         <span className="fw-bold text-muted" style={{ fontSize: 12, width: 16 }}>{i + 1}.</span>
                         <div
@@ -426,23 +450,20 @@ const StaffDashboard = () => {
                           {s.name?.[0]?.toUpperCase()}
                         </div>
                         <div style={{ fontSize: 12 }}>
-                          <div className="fw-semibold">{s.name}</div>
-                          <div className="text-muted" style={{ fontSize: 10 }}>{s.department?.split(' ')[0] || 'MAMCET'}</div>
+                          <div className="fw-semibold" style={{ color: '#1c1f2b' }}>{s.name}</div>
+                          <div className="text-muted" style={{ fontSize: 10 }}>{s.department?.split(' ')[0] || 'AITM'}</div>
                         </div>
                       </div>
                       <span className="fw-bold" style={{ color: '#378fe9', fontSize: 13 }}>{s.postCount}</span>
                     </div>
                   ))}
-                  {students.every(s => s.postCount === 0) && (
-                    <p className="text-muted small mb-0">No post data available.</p>
-                  )}
                 </div>
               )}
             </motion.div>
 
             {/* ── SECTION 5: Analytics Charts ── */}
             <motion.div
-              className="bg-white rounded-4 shadow-sm p-4 mb-4"
+              className="section-card p-4 mb-4"
               initial={{ opacity: 0, x: 16 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
@@ -473,12 +494,12 @@ const StaffDashboard = () => {
                   </ResponsiveContainer>
                 </div>
               ) : (
-                <p className="text-muted small">Could not load analytics.</p>
+                <StaffEmptyState icon={FaChartBar} title="Analytics unavailable" />
               )}
             </motion.div>
 
             <motion.div
-              className="bg-white rounded-4 shadow-sm p-4 mb-4"
+              className="section-card p-4 mb-4"
               initial={{ opacity: 0, x: 16 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.15 }}
@@ -506,14 +527,14 @@ const StaffDashboard = () => {
                   </ResponsiveContainer>
                 </div>
               ) : (
-                <p className="text-muted small">No department data.</p>
+                <StaffEmptyState icon={FaChartBar} title="No department data" />
               )}
             </motion.div>
 
             {/* User growth line chart */}
             {analytics?.userGrowth?.length > 0 && (
               <motion.div
-                className="bg-white rounded-4 shadow-sm p-4 mb-4"
+                className="section-card p-4 mb-4"
                 initial={{ opacity: 0, x: 16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}

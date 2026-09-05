@@ -65,10 +65,12 @@ const AdminSidebar = ({ collapsed, mobileOpen, pendingCount = 0, onMobileClose }
       <aside className={sidebarClass}>
         {/* Logo */}
         <div className="ap-sidebar-logo">
-          <div className="ap-sidebar-logo-icon">🛡️</div>
+          <div className="ap-sidebar-logo-icon" style={{ background: 'transparent', display: 'flex', alignItems: 'center' }}>
+            <img src="/aitm-logo.png" alt="AITM" style={{ width: 32, height: 32, objectFit: 'contain' }} />
+          </div>
           <div>
             <div className="ap-sidebar-logo-text">Admin Panel</div>
-            <div className="ap-sidebar-badge">MAMCET Connect</div>
+            <div className="ap-sidebar-badge">AITM Connect</div>
           </div>
         </div>
 

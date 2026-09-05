@@ -11,7 +11,7 @@ import {
     FaUserShield, FaChartLine, FaNewspaper,
     FaBell, FaUserPlus, FaUpload, FaCheck,
 } from 'react-icons/fa';
-import { FiX, FiInfo, FiAlertTriangle } from 'react-icons/fi';
+import { FiX, FiInfo, FiAlertTriangle, FiBarChart2 } from 'react-icons/fi';
 
 /* ─────────────────────────────────────────────────────────────
    ADD ALUMNI INLINE MODAL
@@ -328,18 +328,18 @@ const AdminStatsSidebar = ({ user }) => {
                 initial={{ opacity: 0, y: -12 }}
                 animate={{ opacity: 1, y: 0 }}
             >
-                <div className="w-100" style={{ height: 64, background: 'linear-gradient(135deg, #1a1a2e 0%, #c84022 100%)' }} />
+                <div className="w-100" style={{ height: 64, background: 'linear-gradient(120deg, #1c1f2b 0%, #b3241f 130%)' }} />
                 <div className="px-3 pb-3 text-center" style={{ marginTop: -32 }}>
                     <div
                         className="rounded-circle border border-3 border-white mx-auto overflow-hidden bg-light d-flex align-items-center justify-content-center fw-bold text-secondary"
-                        style={{ width: 64, height: 64, fontSize: 22 }}
+                        style={{ width: 64, height: 64, fontSize: 22, boxShadow: '0 4px 12px rgba(0,0,0,0.12)' }}
                     >
                         {user?.profilePic
                             ? <img src={user.profilePic} alt="admin" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             : (user?.name?.[0]?.toUpperCase() || 'A')}
                     </div>
                     <div className="fw-bold mt-2" style={{ fontSize: 15 }}>{user?.name}</div>
-                    <div className="badge mt-1" style={{ backgroundColor: '#c84022', fontSize: 11 }}>
+                    <div className="badge rounded-pill mt-1" style={{ backgroundColor: 'rgba(179,36,31,0.1)', color: '#b3241f', fontSize: 11, fontWeight: 700, padding: '5px 10px' }}>
                         <FaUserShield className="me-1" />Administrator
                     </div>
                     <Link to="/admin/profile" className="btn btn-outline-danger btn-sm rounded-pill mt-2 w-100" style={{ fontSize: 12 }}>
@@ -386,7 +386,11 @@ const AdminStatsSidebar = ({ user }) => {
                         </button>
                     </>
                 ) : (
-                    <p className="text-muted small mb-0">Could not load stats.</p>
+                    <div className="empty-state is-compact">
+                        <div className="empty-state-icon"><FiBarChart2 size={18} /></div>
+                        <div className="empty-state-title">Stats unavailable</div>
+                        <div className="empty-state-sub">Check back in a moment.</div>
+                    </div>
                 )}
             </motion.div>
 
@@ -464,16 +468,25 @@ const AdminHome = () => {
             <div className="container">
                 {/* Admin Welcome Banner */}
                 <motion.div
-                    className="rounded-4 mb-4 px-4 py-3 d-flex align-items-center gap-3"
-                    style={{ background: 'linear-gradient(135deg, #1a1a2e 0%, #c84022 100%)', color: '#fff' }}
+                    className="mb-4 px-4 py-4 d-flex align-items-center gap-3 position-relative overflow-hidden"
+                    style={{
+                        background: 'linear-gradient(120deg, #14161f 0%, #1c1f2b 45%, #b3241f 130%)',
+                        color: '#fff',
+                        borderRadius: 20,
+                        boxShadow: '0 16px 40px rgba(179,36,31,0.22)',
+                    }}
                     initial={{ opacity: 0, y: -16 }}
                     animate={{ opacity: 1, y: 0 }}
                 >
-                    <FaUserShield size={32} />
-                    <div>
-                        <div className="fw-bold" style={{ fontSize: 18 }}>Admin Control Centre 🛡️</div>
-                        <div style={{ fontSize: 13, opacity: 0.9 }}>
-                            Welcome, {user?.name?.split(' ')[0] || 'Admin'}. Use Quick Actions or navigate via the sidebar.
+                    <div style={{ position: 'absolute', top: -70, right: -50, width: 220, height: 220, borderRadius: '50%', background: 'rgba(255,255,255,0.06)' }} />
+                    <div style={{ position: 'absolute', bottom: -90, right: 90, width: 180, height: 180, borderRadius: '50%', background: 'rgba(255,255,255,0.045)' }} />
+                    <div className="d-flex align-items-center justify-content-center flex-shrink-0" style={{ width: 52, height: 52, borderRadius: 15, background: 'rgba(255,255,255,0.12)', position: 'relative' }}>
+                        <FaUserShield size={24} />
+                    </div>
+                    <div style={{ position: 'relative' }}>
+                        <div className="fw-bold" style={{ fontSize: 19, letterSpacing: 0.2 }}>Admin Control Centre</div>
+                        <div style={{ fontSize: 13, opacity: 0.85, marginTop: 2 }}>
+                            Welcome back, {user?.name?.split(' ')[0] || 'Admin'} — here's what needs your attention today.
                         </div>
                     </div>
                 </motion.div>
@@ -502,9 +515,12 @@ const AdminHome = () => {
                                     />
                                 ))
                             ) : (
-                                <div className="text-center p-5 bg-white rounded-4 shadow-sm border-0">
-                                    <FaNewspaper size={36} className="text-muted mb-3 opacity-50" />
-                                    <p className="text-muted mb-0">No posts in the feed yet.</p>
+                                <div className="section-card empty-state">
+                                    <div className="empty-state-icon" style={{ width: 52, height: 52 }}>
+                                        <FaNewspaper size={20} />
+                                    </div>
+                                    <div className="empty-state-title">No activity yet</div>
+                                    <div className="empty-state-sub">Posts from your community will show up here.</div>
                                 </div>
                             )}
                         </div>

@@ -19,12 +19,12 @@ const CONFIG = {
     ACTION_VERIFY: "Verify"
   },
   INITIAL_DATA: [
-    { id: 1, name: 'Hari', email: 'hari.cse22@mamcet.com', dept: 'CSE', batch: '2026', status: 'Verified', role: 'UIUX Designer', company: 'ABC Company' },
-    { id: 2, name: 'Shalini', email: 'shalini.ece26@mamcet.com', dept: 'ECE', batch: '2026', status: 'Pending', role: 'Frontend Developer', company: 'Google' },
-    { id: 3, name: 'Kumar', email: 'kumar.it22@mamcet.com', dept: 'IT', batch: '2025', status: 'Verified', role: 'Software Engineer', company: 'Amazon' },
-    { id: 4, name: 'Deepak', email: 'deepak.mech22@mamcet.com', dept: 'MECH', batch: '2026', status: 'Pending', role: 'Production Engineer', company: 'Tesla' },
-    { id: 5, name: 'Priya', email: 'priya.eee22@mamcet.com', dept: 'EEE', batch: '2024', status: 'Verified', role: 'Data Scientist', company: 'Microsoft' },
-    { id: 6, name: 'Arjun', email: 'arjun.civil22@mamcet.com', dept: 'CIVIL', batch: '2026', status: 'Pending', role: 'Site Engineer', company: 'L&T' }
+    { id: 1, name: 'Hari', email: 'hari.cse22@aitm.ac.in', dept: 'CSE', batch: '2026', status: 'Verified', role: 'UIUX Designer', company: 'ABC Company' },
+    { id: 2, name: 'Shalini', email: 'shalini.ece26@aitm.ac.in', dept: 'ECE', batch: '2026', status: 'Pending', role: 'Frontend Developer', company: 'Google' },
+    { id: 3, name: 'Kumar', email: 'kumar.it22@aitm.ac.in', dept: 'IT', batch: '2025', status: 'Verified', role: 'Software Engineer', company: 'Amazon' },
+    { id: 4, name: 'Deepak', email: 'deepak.mech22@aitm.ac.in', dept: 'MECH', batch: '2026', status: 'Pending', role: 'Production Engineer', company: 'Tesla' },
+    { id: 5, name: 'Priya', email: 'priya.eee22@aitm.ac.in', dept: 'EEE', batch: '2024', status: 'Verified', role: 'Data Scientist', company: 'Microsoft' },
+    { id: 6, name: 'Arjun', email: 'arjun.civil22@aitm.ac.in', dept: 'CIVIL', batch: '2026', status: 'Pending', role: 'Site Engineer', company: 'L&T' }
   ],
   STORAGE_KEY: 'alumniData',
   EXPORT_FILE_NAME: "Alumni_Details.xlsx",

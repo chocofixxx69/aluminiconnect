@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { authService } from '../../services/api';
 import { ClipLoader } from 'react-spinners';
+import toast from 'react-hot-toast';
+import AuthVideoBackground from '../../components/common/AuthVideoBackground';
 
 const AdminLoginPage = () => {
   const [form, setForm]       = useState({ email: '', password: '', secretKey: '' });
@@ -31,26 +33,30 @@ const AdminLoginPage = () => {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 50%, #16213e 100%)',
+      background: '#0f172a',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      padding: '24px', fontFamily: "'Inter', sans-serif"
+      padding: '24px', fontFamily: "'Inter', sans-serif",
+      position: 'relative'
     }}>
-      <div style={{ width: '100%', maxWidth: 420 }}>
+      <AuthVideoBackground />
+      <div style={{ width: '100%', maxWidth: 420, position: 'relative', zIndex: 2 }}>
         {/* Logo / Brand */}
         <div style={{ textAlign: 'center', marginBottom: 36 }}>
           <div style={{
-            width: 64, height: 64, borderRadius: '50%',
-            background: 'linear-gradient(135deg, #b22222, #c84022)',
+            width: 72, height: 72, borderRadius: '16px',
+            background: 'rgba(255,255,255,0.08)',
+            border: '1px solid rgba(255,255,255,0.15)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            margin: '0 auto 16px', boxShadow: '0 0 40px rgba(200,64,34,.4)'
+            margin: '0 auto 16px', boxShadow: '0 0 35px rgba(200,64,34,.35)',
+            padding: 8
           }}>
-            <i className="fas fa-shield-alt" style={{ fontSize: 26, color: '#fff' }} />
+            <img src="/aitm-logo.png" alt="AITM Bhatkal Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
           <h1 style={{ color: '#fff', fontSize: 22, fontWeight: 700, marginBottom: 6 }}>
             Admin Control Panel
           </h1>
           <p style={{ color: 'rgba(255,255,255,.45)', fontSize: 13, margin: 0 }}>
-            MAMCET Alumni Connect — Restricted Access
+            AITM Alumni Connect — Restricted Access
           </p>
         </div>
 
@@ -73,6 +79,86 @@ const AdminLoginPage = () => {
             </div>
           )}
 
+          {/* ── 1-CLICK DEMO ADMIN CARD ── */}
+          <div style={{
+            background: 'rgba(124, 58, 237, 0.12)',
+            border: '1px solid rgba(139, 92, 246, 0.3)',
+            borderRadius: 12,
+            padding: '14px 16px',
+            marginBottom: 20
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#c4b5fd', fontSize: 12.5, fontWeight: 700 }}>
+                <i className="fas fa-bolt" style={{ color: '#f59e0b' }} />
+                <span>Demo Admin Account</span>
+              </div>
+              <span style={{
+                background: 'rgba(139, 92, 246, 0.3)',
+                color: '#ddd6fe',
+                fontSize: 9.5,
+                fontWeight: 700,
+                padding: '2px 8px',
+                borderRadius: 9999
+              }}>
+                1-CLICK LOGIN
+              </span>
+            </div>
+
+            <div style={{
+              fontFamily: 'monospace',
+              fontSize: 11,
+              color: 'rgba(255,255,255,0.7)',
+              lineHeight: 1.5,
+              marginBottom: 10
+            }}>
+              <div>Email: <strong style={{ color: '#fff' }}>admin@aitm.ac.in</strong></div>
+              <div>Pass: <strong style={{ color: '#fff' }}>alumni@123</strong> | Key: <strong style={{ color: '#fbbf24' }}>AITM_ADMIN_2026</strong></div>
+            </div>
+
+            <button
+              type="button"
+              disabled={loading}
+              onClick={async () => {
+                setForm({
+                  email: 'admin@aitm.ac.in',
+                  password: 'alumni@123',
+                  secretKey: 'AITM_ADMIN_2026'
+                });
+                setLoading(true);
+                setError('');
+                try {
+                  const res = await authService.login('admin@aitm.ac.in', 'alumni@123', 'admin', 'AITM_ADMIN_2026');
+                  const { user, token } = res.data;
+                  login(user, token);
+                  toast.success(`Welcome ${user.name}! Opening Admin Control Panel...`);
+                  navigate(`/admin/home/${user._id || user.id}`);
+                } catch (err) {
+                  setError(err.response?.data?.message || 'Access denied.');
+                } finally {
+                  setLoading(false);
+                }
+              }}
+              style={{
+                width: '100%',
+                background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: 8,
+                padding: '7px 12px',
+                fontSize: 12,
+                fontWeight: 700,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 6,
+                boxShadow: '0 4px 12px rgba(124, 58, 237, 0.4)'
+              }}
+            >
+              <i className="fas fa-bolt" /> ⚡ Click to Open Admin Control Panel
+            </button>
+          </div>
+
           <form onSubmit={handleLogin}>
             {/* Email */}
             <div style={{ marginBottom: 16 }}>
@@ -82,7 +168,7 @@ const AdminLoginPage = () => {
               <input
                 type="email" name="email" required
                 value={form.email} onChange={handleChange}
-                placeholder="admin@mamcet.com"
+                placeholder="admin@aitm.ac.in"
                 style={inputStyle}
               />
             </div>

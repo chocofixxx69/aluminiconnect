@@ -21,8 +21,8 @@ const CONFIG = {
   },
   FALLBACK: {
     PHONE: "+91 98765 43210",
-    LOCATION: "Chennai, TN, India",
-    INSTITUTION: "MAMCET",
+    LOCATION: "Bhatkal, Karnataka, India",
+    INSTITUTION: "Anjuman Institute of Technology and Management (AITM), Bhatkal",
     DEGREE: "Bachelor of Engineering",
     EXP: "2+ Years",
     SKILLS: ['React.js', 'Node.js', 'UI/UX Design', 'Database Management', 'Cloud Computing'],

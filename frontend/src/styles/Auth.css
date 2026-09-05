@@ -1,15 +1,17 @@
 /* src/styles/Auth.css */
 .auth-body {
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-              url('https://res.cloudinary.com/dnby5o1lt/image/upload/v1754489527/alumni_linked_in_background_image_sgla6a.jpg');
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
 }
 
 .auth-card {
-  background-color: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
   border-radius: 1rem;
   width: 100%;
   max-width: 450px;
@@ -32,15 +34,17 @@
 
 /* Signup Styles */
 .signup-background {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-              url('https://res.cloudinary.com/dnby5o1lt/image/upload/v1754489527/alumni_linked_in_background_image_sgla6a.jpg');
-  background-size: cover;
+  position: relative;
   min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background-size: cover;
 }
 
 .form-glass-container {
+  position: relative;
+  z-index: 2;
   max-width: 850px;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.96);
   border-radius: 1.5rem;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
@@ -143,12 +147,9 @@
 }
 
 .signup-background {
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-              url('https://res.cloudinary.com/dnby5o1lt/image/upload/v1754489527/alumni_linked_in_background_image_sgla6a.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  position: relative;
   min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
 
 /* src/styles/Auth.css - Add these at the bottom */
@@ -254,12 +255,9 @@
 /* src/styles/Auth.css - Refined for Professionalism */
 
 .signup-background {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-              url('https://res.cloudinary.com/dnby5o1lt/image/upload/v1754489527/alumni_linked_in_background_image_sgla6a.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  position: relative;
   min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
 
 .form-glass-container {

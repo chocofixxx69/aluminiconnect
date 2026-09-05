@@ -29,16 +29,16 @@ const downloadTemplate = (type) => {
   const cols = type === 'student' ? STUDENT_COLS : type === 'alumni' ? ALUMNI_COLS : STAFF_COLS;
   const sample = {
     student: [
-      ['Aarav Kumar','aarav.cse22@mamcet.com','CSE','2022','2026','22CSE001','+919876543210','Male'],
-      ['Priya Nair','priya.ece22@mamcet.com','ECE','2022','2026','22ECE002','+919876543211','Female'],
+      ['Aarav Kumar','aarav.cse22@aitm.ac.in','CSE','2022','2026','22CSE001','+919876543210','Male'],
+      ['Priya Nair','priya.ece22@aitm.ac.in','ECE','2022','2026','22ECE002','+919876543211','Female'],
     ],
     alumni: [
       ['Karthik Raj','karthik.cse18@gmail.com','CSE','2022','Zoho Corp','Software Engineer','+919123456789','Male'],
       ['Divya Mehta','divya.ece18@gmail.com','ECE','2022','TCS','QA Engineer','+919234567890','Female'],
     ],
     staff: [
-      ['Dr. Ramesh Kumar','ramesh.principal@mamcet.com','Administration','Principal','+919988776655','Male'],
-      ['Prof. Sheela Devi','sheela.cse@mamcet.com','CSE','HOD','+919977665544','Female'],
+      ['Dr. Ramesh Kumar','ramesh.principal@aitm.ac.in','Administration','Principal','+919988776655','Male'],
+      ['Prof. Sheela Devi','sheela.cse@aitm.ac.in','CSE','HOD','+919977665544','Female'],
     ],
   }[type];
 

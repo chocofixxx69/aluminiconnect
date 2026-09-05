@@ -41,7 +41,7 @@ async function promoteStudentToAlumni(student) {
     userId      : student._id,
     type        : 'role_changed',
     title       : '🎓 Congratulations! You\'ve graduated to Alumni!',
-    description : `Welcome to the MAMCET Alumni network (Batch ${student.batch})! Your account is now fully active.`,
+    description : `Welcome to the AITM Alumni network (Batch ${student.batch})! Your account is now fully active.`,
     icon        : '🎓',
   });
 

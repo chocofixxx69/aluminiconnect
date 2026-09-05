@@ -31,6 +31,7 @@ import LegalPage from './pages/Legal/LegalPage';
 import { Toaster } from 'react-hot-toast';
 import Mentorship from './pages/Mentorship/Mentorship';
 import ActivationModal from './components/auth/ActivationModal';
+import DemoPortalsWidget from './components/common/DemoPortalsWidget';
 
 // Unified Profile (own-edit + public-view merged)
 import Profile from './pages/Profile/Profile';
@@ -126,6 +127,7 @@ function App() {
               <ActivationModal />
               <NavigationSync />
               <PopupNotificationSystem />
+              <DemoPortalsWidget />
               <Toaster
                 position="top-right"
                 toastOptions={{

@@ -8,8 +8,7 @@ import NotificationDropdown from '../notifications/NotificationDropdown';
 import { FaSignOutAlt, FaCommentDots, FaBars, FaTimes } from 'react-icons/fa';
 import '../../styles/Navbar.css';
 
-const LOGO_URL =
-  'https://res.cloudinary.com/dnby5o1lt/image/upload/v1754489527/ALUMINI_CONNECT_LOGO_hwlrpw.png';
+const LOGO_URL = '/aitm-logo.png';
 
 // ─── tiny reusable avatar ─────────────────────────────────────
 const Avatar = ({ user, size = 38 }) => {
@@ -75,7 +74,7 @@ const Navbar = () => {
   };
 
   const brandColor     = roleKey === 'admin' ? '#b22222' : roleKey === 'staff' ? '#1a6b4a' : '#c84022';
-  const brandLabel     = roleKey === 'admin' ? 'ADMIN PANEL' : roleKey === 'staff' ? 'STAFF PANEL' : 'ALUMNI CONNECT';
+  const brandLabel     = roleKey === 'admin' ? 'AITM ADMIN PANEL' : roleKey === 'staff' ? 'AITM STAFF PANEL' : 'AITM ALUMNI CONNECT';
   const dashboardHome  = roleKey === 'admin'   ? `/admin/home/${user?._id || user?.id}`
                        : roleKey === 'student' ? `/student/home/${user?._id || user?.id}`
                        : roleKey === 'staff'   ? '/staff/dashboard'
@@ -115,7 +114,7 @@ const Navbar = () => {
           >
             <img
               src={LOGO_URL}
-              alt="MAMCET Alumni Connect"
+              alt="AITM Alumni Connect"
               style={{ width: 38, height: 38, objectFit: 'contain' }}
             />
             {/* brand text: hidden on xs; always visible sm+ */}
@@ -184,14 +183,11 @@ const Navbar = () => {
                 <Link
                   key={item.path}
                   to={itemPath}
-                  className="d-flex flex-column align-items-center text-decoration-none position-relative"
+                  className={`nav-tab-item d-flex flex-column align-items-center text-decoration-none position-relative${isActive ? ' active-tab' : ''}`}
                   style={{
-                    color: isActive ? '#b22222' : '#555',
+                    color: isActive ? brandColor : '#666',
                     fontWeight: 700,
-                    borderBottom: isActive ? '3px solid #b22222' : '3px solid transparent',
-                    paddingBottom: 2,
                     fontSize: 11,
-                    transition: '0.2s',
                   }}
                 >
                   <div className="position-relative">

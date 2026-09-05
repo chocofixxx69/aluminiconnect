@@ -738,7 +738,7 @@ router.put('/activate/:userId', protect, authorize('admin'), asyncHandler(async 
     userId: user._id,
     type:   'account_activated',
     title:  '🎉 Your account has been approved!',
-    description: 'Welcome to MAMCET Alumni Connect! You can now log in and explore.',
+    description: 'Welcome to AITM Alumni Connect! You can now log in and explore.',
     icon: '🎉'
   });
   const io = req.app.get('io');
@@ -1297,7 +1297,7 @@ router.put('/users/:id/role', protect, authorize('admin'), asyncHandler(async (r
 // Simple in-process store (persists while server is up).
 // For production, store in a DB collection or .env overrides.
 const _sysConfig = {
-  siteName: 'MAMCET Alumni Connect',
+  siteName: 'AITM Alumni Connect',
   allowAlumniJobs: true,
   allowAlumniEvents: true,
   requireApproval: true,
@@ -1411,7 +1411,7 @@ router.post('/approve-staff', protect, authorize('admin'), asyncHandler(async (r
       userId: staffUser._id,
       type: 'account_activated',
       title: '🎉 Your staff account has been approved!',
-      description: 'Welcome to MAMCET Alumni Connect! You can now log in and access the staff dashboard.',
+      description: 'Welcome to AITM Alumni Connect! You can now log in and access the staff dashboard.',
       icon: '🎉'
     });
     const io = req.app.get('io');

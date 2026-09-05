@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const CONFIG = {
   LABELS: {
     MAIN_TITLE: "SUCCESSFULLY VERIFIED",
-    SUB_TITLE: "ADDED AS MAMCET ALUMNI",
+    SUB_TITLE: "ADDED AS AITM ALUMNI",
     BADGE_ICON: "🏅",
     BACK_BTN: "Go Back to Management",
     PREFIX_COMPANY: "at "

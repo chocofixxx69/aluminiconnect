@@ -152,7 +152,7 @@ const JobPostings = () => {
           <label className="form-label extra-small fw-bold">Cover Letter / Note</label>
           <textarea className="form-control" rows="4" placeholder="Briefly mention why you are a good fit..."></textarea>
         </div>
-        <p className="extra-small text-muted">Your MAMCET alumni profile will be shared with the recruiter automatically.</p>
+        <p className="extra-small text-muted">Your AITM alumni profile will be shared with the recruiter automatically.</p>
       </Modal>
 
       {/* Post Job Modal */}

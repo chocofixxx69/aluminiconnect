@@ -5,6 +5,7 @@ import { authService } from '../../services/api';
 import toast from 'react-hot-toast';
 import { handleError } from '../../utils/errorHandler';
 import { ClipLoader } from 'react-spinners';
+import AuthVideoBackground from '../../components/common/AuthVideoBackground';
 import '../../styles/Auth.css';
 
 const StudentLogin = () => {
@@ -56,11 +57,12 @@ const StudentLogin = () => {
   };
 
   return (
-    <div className="signup-background d-flex align-items-center justify-content-center">
-      <Link to="/login" className="back-btn-circle"><i className="fas fa-arrow-left"></i></Link>
-      <div className="form-glass-container p-4 p-md-5">
+    <div className="signup-background d-flex align-items-center justify-content-center position-relative py-5">
+      <AuthVideoBackground />
+      <Link to="/login" className="back-btn-circle" style={{ zIndex: 10 }}><i className="fas fa-arrow-left"></i></Link>
+      <div className="form-glass-container p-4 p-md-5 position-relative" style={{ zIndex: 2 }}>
         <div className="text-center mb-4">
-          <img src="https://res.cloudinary.com/dnby5o1lt/image/upload/v1754489527/ALUMINI_CONNECT_LOGO_hwlrpw.png" width="45" alt="MAMCET" />
+          <img src="/aitm-logo.png" width="55" height="55" style={{ objectFit: 'contain' }} alt="AITM Bhatkal Logo" />
           <h2 className="login-title">Student Login</h2>
         </div>
 
@@ -78,13 +80,53 @@ const StudentLogin = () => {
           </div>
         )}
 
+        {/* ── 1-CLICK DEMO CREDENTIAL CARD ── */}
+        <div className="p-3 mb-3 rounded-3" style={{ background: '#eff6ff', border: '1.5px solid #bfdbfe' }}>
+          <div className="d-flex align-items-center justify-content-between mb-2">
+            <div className="d-flex align-items-center gap-2">
+              <i className="fas fa-bolt text-primary" />
+              <strong className="text-dark" style={{ fontSize: '12.5px' }}>Demo Student Account</strong>
+            </div>
+            <span className="badge bg-primary text-white" style={{ fontSize: '9.5px' }}>1-CLICK LOGIN</span>
+          </div>
+          <div className="text-muted font-monospace mb-2" style={{ fontSize: '11px', lineHeight: '1.4' }}>
+            <div>ID: <strong className="text-dark">student@aitm.ac.in</strong></div>
+            <div>Pass: <strong className="text-dark">alumni@123</strong></div>
+          </div>
+          <button
+            type="button"
+            onClick={async () => {
+              setEmail('student@aitm.ac.in');
+              setPassword('alumni@123');
+              setLoading(true);
+              setError('');
+              try {
+                const res = await authService.login('student@aitm.ac.in', 'alumni@123', 'student');
+                const { user, token } = res.data;
+                login(user, token);
+                toast.success(`Welcome ${user.name}! Opening Student Portal...`);
+                navigate(`/student/home/${user._id || user.id}`);
+              } catch (err) {
+                setError(handleError(err));
+              } finally {
+                setLoading(false);
+              }
+            }}
+            disabled={loading}
+            className="btn btn-sm btn-primary w-100 fw-bold d-flex align-items-center justify-content-center gap-2 py-1"
+            style={{ borderRadius: '6px', fontSize: '12px' }}
+          >
+            <i className="fas fa-bolt" /> ⚡ Click to Open Student Portal
+          </button>
+        </div>
+
         <form onSubmit={handleLogin}>
           <div className="mb-3">
             <label className="form-label">Student Email ID</label>
             <input
               type="email"
               className="form-control"
-              placeholder="student@mamcet.com"
+              placeholder="student@aitm.ac.in"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

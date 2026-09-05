@@ -32,7 +32,7 @@ const TEMPLATES = [
   { label: '📅 Event Reminder',    title: 'Upcoming Event Reminder', message: 'Don\'t forget! We have an exciting event coming up soon. Check the Events section for full details and register now.' },
   { label: '💼 New Job Posted',    title: 'New Job Opportunity',      message: 'A new job opportunity has just been posted on the platform. Log in now and check the Jobs section to apply.' },
   { label: '🎓 Graduation Update', title: 'Graduation & Batch Update', message: 'This is an important update regarding graduations and batch transitions. Please log in to check your profile and verify your details.' },
-  { label: '🔔 Platform Update',   title: 'Platform Maintenance Notice', message: 'We\'re making improvements to MAMCET Alumni Connect. The platform may be briefly unavailable on [date/time]. Thank you for your patience!' },
+  { label: '🔔 Platform Update',   title: 'Platform Maintenance Notice', message: 'We\'re making improvements to AITM Alumni Connect. The platform may be briefly unavailable on [date/time]. Thank you for your patience!' },
   { label: '📢 General Announcement', title: 'Important Announcement', message: '' },
 ];
 

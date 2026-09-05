@@ -1,18 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 :root {
   --custom-red: #c84022;
   --custom-red-dark: #a1331b;
   --bg-light: #f8f9fa;
   --text-dark: #333;
+
+  /* ── Design tokens ─────────────────────────────────────── */
+  --brand: #c84022;
+  --brand-dark: #a1331b;
+  --brand-soft: rgba(200, 64, 34, 0.08);
+  --admin-accent: #b3241f;
+  --admin-ink: #1c1f2b;
+  --staff-accent: #14764f;
+  --staff-accent-light: #1f9d6b;
+
+  --ink-900: #15181d;
+  --ink-700: #3a3f47;
+  --ink-500: #6b7280;
+  --ink-300: #9aa1ab;
+
+  --line: #e9e7ee;
+  --line-soft: #f1f0f5;
+  --surface: #ffffff;
+  --surface-muted: #f7f6fb;
+  --page-bg: #f4f3f8;
+
+  --shadow-xs: 0 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-sm: 0 1px 3px rgba(16, 24, 40, 0.05), 0 3px 10px rgba(16, 24, 40, 0.045);
+  --shadow-md: 0 6px 20px rgba(16, 24, 40, 0.08);
+  --shadow-lg: 0 16px 40px rgba(16, 24, 40, 0.14);
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+  --radius-pill: 999px;
 }
 
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-color: #f3f2ef;
-  /* LinkedIn-style light grey bg */
+  color: var(--ink-700);
+  background-color: var(--page-bg);
+  background-image:
+    radial-gradient(760px 420px at 6% -8%, rgba(200, 64, 34, 0.07), transparent 60%),
+    radial-gradient(680px 460px at 100% 0%, rgba(99, 102, 241, 0.055), transparent 55%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--ink-900);
 }
 
 .btn-custom-red {
@@ -226,8 +266,79 @@ body {
 
 /* Dashboard Common */
 .dashboard-card {
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   margin-bottom: 20px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+/* ── Empty / error state (used wherever a widget has nothing to show) ── */
+.empty-state {
+  text-align: center;
+  padding: 28px 16px;
+  color: var(--ink-500);
+}
+
+.empty-state-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-muted);
+  color: var(--ink-300);
+  font-size: 18px;
+}
+
+.empty-state-title {
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--ink-700);
+  margin-bottom: 2px;
+}
+
+.empty-state-sub {
+  font-size: 12px;
+  color: var(--ink-300);
+}
+
+.empty-state.is-compact {
+  padding: 16px 8px;
+}
+
+/* ── Reusable stat tile ── */
+.stat-tile {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.stat-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Section shell used across dashboards ── */
+.section-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.section-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--ink-700);
 }
 
 /* Global Responsive Utilities */

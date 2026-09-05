@@ -22,7 +22,7 @@ const Maintenance = () => {
         <h6 className="fw-bold mb-2">Need immediate assistance?</h6>
         <p className="text-muted small mb-0">
           Contact the site administrator at <br/>
-          <a href="mailto:admin@mamcet.com" style={{ color: '#c84022', textDecoration: 'none' }}>admin@mamcet.com</a>
+          <a href="mailto:admin@aitm.ac.in" style={{ color: '#c84022', textDecoration: 'none' }}>admin@aitm.ac.in</a>
         </p>
       </div>
     </div>

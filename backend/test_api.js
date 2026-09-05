@@ -49,7 +49,7 @@ async function runTests() {
     res = await fetch(`${URL}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: 'bharath@mamcet.com', password: 'wrongpassword', role: 'alumni' })
+      body: JSON.stringify({ email: 'bharath@aitm.ac.in', password: 'wrongpassword', role: 'alumni' })
     });
     data = await res.json();
     if (res.status === 401 && data.message === 'Incorrect password') {

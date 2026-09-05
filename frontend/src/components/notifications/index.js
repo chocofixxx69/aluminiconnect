@@ -18,9 +18,10 @@ export const NotificationHeader = ({ onBack, unreadCount }) => {
           </button>
           <div className="header-logo">
             <img 
-              src="https://res.cloudinary.com/dnby5o1lt/image/upload/v1754489527/ALUMINI_CONNECT_LOGO_hwlrpw.png" 
-              alt="Alumni Connect Logo" 
+              src="/aitm-logo.png" 
+              alt="AITM Alumni Connect Logo" 
               className="logo-image"
+              style={{ objectFit: 'contain' }}
             />
             <span className="logo-text">Alumni Connect</span>
           </div>

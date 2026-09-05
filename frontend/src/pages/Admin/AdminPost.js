@@ -45,7 +45,7 @@ const PostItem = ({ data }) => (
       </div>
       <div className="col-md-3 col-4 text-end">
         <img 
-          src={data.image || 'https://via.placeholder.com/150?text=MAMCET'} 
+          src={data.image || 'https://via.placeholder.com/150?text=AITM'} 
           alt="post-thumbnail" 
           className="rounded shadow-sm" 
           style={{ width: '100px', height: '70px', objectFit: 'cover' }} 

@@ -27,7 +27,7 @@ const run = async () => {
 
     const alumniUser = await User.create({
       name: 'Bharath K',
-      email: 'bharath@mamcet.com',
+      email: 'bharath@aitm.ac.in',
       password: rawPassword,
       role: 'alumni',
       company: 'HILIFE AI',
@@ -42,22 +42,22 @@ const run = async () => {
         { title: 'Full Stack Developer', company: 'TechInnovate Solutions', duration: '2022 - 2024', desc: 'Worked on enterprise-level SaaS products using MERN stack.' }
       ],
       education: [
-        { school: 'MAMCET', degree: 'B.E. Computer Science and Engineering', duration: '2020 - 2024' }
+        { school: 'Anjuman Institute of Technology and Management (AITM), Bhatkal', degree: 'B.E. Computer Science and Engineering', duration: '2020 - 2024' }
       ]
     });
 
     const adminUser = await User.create({
       name: 'Admin User',
-      email: 'admin@mamcet.com',
+      email: 'admin@aitm.ac.in',
       password: rawPassword,
       role: 'admin',
-      company: 'MAMCET',
+      company: 'AITM',
       designation: 'Placement Coordinator'
     });
 
     const studentUser = await User.create({
       name: 'Student User',
-      email: 'student@mamcet.com',
+      email: 'student@aitm.ac.in',
       password: rawPassword,
       role: 'student',
       batch: '2022-2026'
@@ -70,7 +70,7 @@ const run = async () => {
     await Post.create([
       {
         userId: adminUser._id,
-        userName: 'MAMCET Placement Cell',
+        userName: 'AITM Placement Cell',
         userRole: 'Official Account',
         userPic: '',
         content: 'We are thrilled to announce that TCS is visiting our campus for the 2025/26 batch placement drive. Registration is now open on the portal!',
@@ -85,7 +85,7 @@ const run = async () => {
         userName: 'Priya Sharma',
         userRole: 'SDE-II at Google',
         userPic: '',
-        content: 'Just completed my 2nd year at Google. Grateful for the foundation MAMCET provided. If anyone needs tips for Big Tech interviews, feel free to reach out!',
+        content: 'Just completed my 2nd year at Google. Grateful for the foundation AITM provided. If anyone needs tips for Big Tech interviews, feel free to reach out!',
         media: '',
         likes: 128,
         likedBy: [alumniUser._id],
@@ -135,7 +135,7 @@ const run = async () => {
         category: 'Networking',
         date: '2026-03-15',
         time: '10:00 AM',
-        venue: 'MAMCET Grand Hall',
+        venue: 'AITM Grand Hall, Bhatkal',
         desc: 'Join us for our biggest annual gathering to reconnect with batchmates and explore networking opportunities.',
         image: 'https://images.unsplash.com/photo-1540575861501-7ad0582373f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
         registeredBy: [],
@@ -174,9 +174,9 @@ const run = async () => {
     console.log('\n🎉 Database seeding complete!');
     console.log('─────────────────────────────────────────');
     console.log('Test Credentials:');
-    console.log('  Alumni  → bharath@mamcet.com  / [see SEED_PASSWORD in .env]');
-    console.log('  Admin   → admin@mamcet.com    / [see SEED_PASSWORD in .env]');
-    console.log('  Student → student@mamcet.com  / [see SEED_PASSWORD in .env]');
+    console.log('  Alumni  → bharath@aitm.ac.in  / [see SEED_PASSWORD in .env]');
+    console.log('  Admin   → admin@aitm.ac.in    / [see SEED_PASSWORD in .env]');
+    console.log('  Student → student@aitm.ac.in  / [see SEED_PASSWORD in .env]');
     console.log('─────────────────────────────────────────');
     process.exit(0);
   } catch (err) {

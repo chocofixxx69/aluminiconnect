@@ -28,7 +28,7 @@ const sendOTPEmail = async (email, otp, name = '') => {
   const html = `
     <div style="font-family:Arial,sans-serif;max-width:480px;margin:auto;border:1px solid #ddd;border-radius:8px;overflow:hidden">
       <div style="background:#c84022;padding:24px;text-align:center">
-        <h2 style="color:white;margin:0">MAMCET Alumni Connect</h2>
+        <h2 style="color:white;margin:0">AITM Alumni Connect</h2>
       </div>
       <div style="padding:32px">
         <h3>Hello ${name || 'there'}!</h3>
@@ -40,7 +40,7 @@ const sendOTPEmail = async (email, otp, name = '') => {
       </div>
     </div>
   `;
-  await sendEmail(email, 'Your OTP for MAMCET Alumni Connect Registration', html);
+  await sendEmail(email, 'Your OTP for AITM Alumni Connect Registration', html);
 };
 
 /**
@@ -53,7 +53,7 @@ const sendApprovalEmail = async (email, name) => {
         <h2 style="color:white;margin:0">Welcome, ${name}! 🎉</h2>
       </div>
       <div style="padding:32px">
-        <p>Your alumni account has been <strong>approved</strong> by the MAMCET admin team.</p>
+        <p>Your alumni account has been <strong>approved</strong> by the AITM admin team.</p>
         <p>You can now log in and connect with your fellow alumni, students, and explore job opportunities.</p>
         <a href="${process.env.FRONTEND_URL || 'http://localhost:3000'}/login/alumni"
            style="display:inline-block;background:#c84022;color:white;padding:12px 32px;border-radius:6px;text-decoration:none;font-weight:bold;margin-top:16px">
@@ -62,7 +62,7 @@ const sendApprovalEmail = async (email, name) => {
       </div>
     </div>
   `;
-  await sendEmail(email, 'Your MAMCET Alumni Connect Account Has Been Approved!', html);
+  await sendEmail(email, 'Your AITM Alumni Connect Account Has Been Approved!', html);
 };
 
 /**
@@ -75,7 +75,7 @@ const sendBroadcastEmail = async (recipients, subject, title, message) => {
     const html = `
       <div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;border:1px solid #e0e0e0;border-radius:10px;overflow:hidden">
         <div style="background:linear-gradient(135deg,#6366f1,#8b5cf6);padding:28px;text-align:center">
-          <h2 style="color:#fff;margin:0;font-size:20px">📢 MAMCET Alumni Connect</h2>
+          <h2 style="color:#fff;margin:0;font-size:20px">📢 AITM Alumni Connect</h2>
           <p style="color:rgba(255,255,255,0.8);margin:6px 0 0;font-size:13px">Admin Announcement</p>
         </div>
         <div style="padding:32px">
@@ -83,7 +83,7 @@ const sendBroadcastEmail = async (recipients, subject, title, message) => {
           <div style="font-size:14px;color:#444;line-height:1.7;white-space:pre-wrap">${message}</div>
         </div>
         <div style="background:#f8f8f8;padding:16px;text-align:center;font-size:11px;color:#aaa">
-          This message was sent by the MAMCET Admin team. Do not reply to this email.
+          This message was sent by the AITM Admin team. Do not reply to this email.
         </div>
       </div>
     `;
@@ -121,14 +121,14 @@ const sendCredentialsEmail = async (email, name, rawPass, role = 'student') => {
   const html = `
     <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;border:1px solid #e0e0e0;border-radius:12px;overflow:hidden">
       <div style="background:linear-gradient(135deg,#c84022,#e05a35);padding:28px;text-align:center">
-        <h2 style="color:#fff;margin:0;font-size:20px">🎓 MAMCET Alumni Connect</h2>
+        <h2 style="color:#fff;margin:0;font-size:20px">🎓 AITM Alumni Connect</h2>
         <p style="color:rgba(255,255,255,0.85);margin:6px 0 0;font-size:13px">Your Account is Ready</p>
       </div>
 
       <div style="padding:32px">
         <p style="font-size:15px;color:#1a1a2e;margin:0 0 8px">Hello <strong>${name}</strong>,</p>
         <p style="font-size:14px;color:#555;margin:0 0 24px;line-height:1.6">
-          Your <strong>MAMCET Alumni Connect</strong> account has been created by the admin team.
+          Your <strong>AITM Alumni Connect</strong> account has been created by the admin team.
           Use the credentials below to log in.
         </p>
 
@@ -174,7 +174,7 @@ const sendCredentialsEmail = async (email, name, rawPass, role = 'student') => {
       </div>
 
       <div style="background:#f8f8f8;padding:16px;text-align:center;font-size:11px;color:#aaa;border-top:1px solid #eee">
-        This is an auto-generated message from the MAMCET Admin team. Do not reply to this email.
+        This is an auto-generated message from the AITM Admin team. Do not reply to this email.
       </div>
     </div>
   `;
@@ -183,7 +183,7 @@ const sendCredentialsEmail = async (email, name, rawPass, role = 'student') => {
   try {
     await sendEmail(
       email,
-      '🎓 Your Alumni Connect Account is Created — Login Credentials Inside',
+      '🎓 Your AITM Alumni Connect Account is Created — Login Credentials Inside',
       html
     );
     console.log(`[sendCredentialsEmail] ✅ Sent to ${email}`);
@@ -213,13 +213,13 @@ const sendActivationSuccessEmail = async (email, name, role = 'student') => {
     <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;border:1px solid #e0e0e0;border-radius:12px;overflow:hidden">
       <div style="background:linear-gradient(135deg,#16a34a,#22c55e);padding:28px;text-align:center">
         <h2 style="color:#fff;margin:0;font-size:22px">🎉 Account Activated!</h2>
-        <p style="color:rgba(255,255,255,0.85);margin:6px 0 0;font-size:13px">Welcome to MAMCET Alumni Connect</p>
+        <p style="color:rgba(255,255,255,0.85);margin:6px 0 0;font-size:13px">Welcome to AITM Alumni Connect</p>
       </div>
 
       <div style="padding:32px">
         <p style="font-size:15px;color:#1a1a2e;margin:0 0 8px">Hello <strong>${name}</strong>,</p>
         <p style="font-size:14px;color:#555;margin:0 0 24px;line-height:1.6">
-          Your <strong>MAMCET Alumni Connect</strong> account has been <strong style="color:#16a34a">successfully activated</strong>!
+          Your <strong>AITM Alumni Connect</strong> account has been <strong style="color:#16a34a">successfully activated</strong>!
           You now have full access to the platform.
         </p>
 
@@ -244,14 +244,14 @@ const sendActivationSuccessEmail = async (email, name, role = 'student') => {
       </div>
 
       <div style="background:#f8f8f8;padding:16px;text-align:center;font-size:11px;color:#aaa;border-top:1px solid #eee">
-        This is an auto-generated message from the MAMCET Admin team. Do not reply to this email.
+        This is an auto-generated message from the AITM Admin team. Do not reply to this email.
       </div>
     </div>
   `;
 
   console.log(`[sendActivationSuccessEmail] Sending activation-success email to ${email}`);
   try {
-    await sendEmail(email, '✅ Your MAMCET Alumni Connect Account is Now Active!', html);
+    await sendEmail(email, '✅ Your AITM Alumni Connect Account is Now Active!', html);
     console.log(`[sendActivationSuccessEmail] ✅ Sent to ${email}`);
   } catch (err) {
     console.error(`[sendActivationSuccessEmail] ❌ FAILED for ${email}:`, err.message);

@@ -199,7 +199,7 @@ const JobPostings = () => {
             )}
           </div>
         </div>
-        <p className="extra-small text-muted">Your MAMCET alumni profile will be shared with the recruiter automatically.</p>
+        <p className="extra-small text-muted">Your AITM profile will be shared with the recruiter automatically.</p>
       </Modal>
 
       {/* JOB DETAILS MODAL */}

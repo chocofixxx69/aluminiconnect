@@ -101,7 +101,7 @@ const StudentModal = ({ student, onClose, onSave, saving }) => {
             </Field>
             <Field label="Email *">
               <input value={form.email} onChange={e => set('email', e.target.value)}
-                placeholder="aarav@mamcet.com" disabled={isEdit} />
+                placeholder="aarav@aitm.ac.in" disabled={isEdit} />
             </Field>
             <Field label="Roll Number">
               <input value={form.rollNumber} onChange={e => set('rollNumber', e.target.value)} placeholder="22CSE001" />
@@ -322,8 +322,8 @@ const BulkImportModal = ({ onClose, onImport, importing, importResult }) => {
   const downloadTemplate = () => {
     const ws = XLSX.utils.aoa_to_sheet([
       ['Name','Email','Roll Number','Phone','Department','Batch','Graduation Year','Gender','City'],
-      ['Aarav Kumar','aarav.cse22@mamcet.com','22CSE001','+919876543210','CSE','2022','2026','Male','Chennai'],
-      ['Priya Nair','priya.ece22@mamcet.com','22ECE002','+919876543211','ECE','2022','2026','Female','Coimbatore'],
+      ['Aarav Kumar','aarav.cse22@aitm.ac.in','22CSE001','+919876543210','CSE','2022','2026','Male','Bhatkal'],
+      ['Priya Nair','priya.ece22@aitm.ac.in','22ECE002','+919876543211','ECE','2022','2026','Female','Mangalore'],
     ]);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Students');

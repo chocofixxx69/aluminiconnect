@@ -1,4 +1,4 @@
-# 🎓 AlumniConnect — Institutional Networking & Mentorship Platform
+# 🎓 AITM Alumni Connect — Anjuman Institute of Technology and Management, Bhatkal
 
 [![Node.js](https://img.shields.io/badge/Node.js-v18%2B-green.svg)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-v19.0-61dafb.svg)](https://react.dev/)
@@ -7,7 +7,7 @@
 [![Socket.io](https://img.shields.io/badge/Socket.io-Realtime-010101.svg)](https://socket.io/)
 [![License](https://img.shields.io/badge/License-ISC-blue.svg)](#license)
 
-**AlumniConnect** is a full-stack, enterprise-ready networking platform built to bridge the gap between alumni, current students, faculty staff, and institutional administrators. It powers real-time messaging, mentorship matching, job/internship boards, event management, automated student graduation workflows, and robust administrative analytics.
+**AITM Alumni Connect** is the official institutional networking and mentorship platform for **Anjuman Institute of Technology and Management (AITM), Bhatkal**, built to bridge the gap between alumni, current students, faculty staff, and institutional administrators. It powers real-time messaging, mentorship matching, job/internship boards, event management, automated student graduation workflows, and robust administrative analytics.
 
 ---
 

@@ -518,9 +518,12 @@ const AlumniDashboard = () => {
                   </div>
                 </>
               ) : (
-                <div className="text-center p-5 bg-white rounded-4 shadow-sm border-0">
-                  <i className="fas fa-stream fa-2x text-muted mb-3"></i>
-                  <p className="text-muted mb-0">No posts yet. Be the first to share something!</p>
+                <div className="section-card empty-state">
+                  <div className="empty-state-icon" style={{ width: 52, height: 52 }}>
+                    <i className="fas fa-stream" style={{ fontSize: 18 }}></i>
+                  </div>
+                  <div className="empty-state-title">No posts yet</div>
+                  <div className="empty-state-sub">Be the first to share something with your network.</div>
                 </div>
               )}
             </div>
@@ -532,7 +535,7 @@ const AlumniDashboard = () => {
               <AdminStatsWidget />
             )}
             <NewsWidget news={[
-              { title: "MAMCET Annual Meet '26", date: 'March 15, 2026' },
+              { title: "AITM Annual Meet '26", date: 'March 15, 2026' },
               { title: 'New AI Lab Opening',     date: 'April 02, 2026' }
             ]} />
             <EventsWidget events={[

@@ -4,6 +4,7 @@ import { authService } from '../../services/api';
 
 import { ClipLoader } from 'react-spinners';
 import toast, { Toaster } from 'react-hot-toast';
+import AuthVideoBackground from '../../components/common/AuthVideoBackground';
 import '../../styles/Auth.css';
 
 // ── OTP Verification Screen ───────────────────────────────────────────────────
@@ -43,11 +44,12 @@ const OTPScreen = ({ email, onSuccess, onBack }) => {
   };
 
   return (
-    <div className="signup-background d-flex align-items-center justify-content-center">
+    <div className="signup-background d-flex align-items-center justify-content-center position-relative py-5">
+      <AuthVideoBackground />
       <Toaster position="top-center" />
-      <div className="form-glass-container p-4 p-md-5" style={{ maxWidth: 420 }}>
+      <div className="form-glass-container p-4 p-md-5 position-relative" style={{ maxWidth: 420, zIndex: 2 }}>
         <div className="text-center mb-4">
-          <img src="https://res.cloudinary.com/dnby5o1lt/image/upload/v1754489527/ALUMINI_CONNECT_LOGO_hwlrpw.png" alt="MAMCET Logo" width={45} />
+          <img src="/aitm-logo.png" alt="AITM Bhatkal Logo" width={50} height={50} style={{ objectFit: 'contain' }} />
           <h4 className="fw-bold mt-3">Verify Your Email</h4>
           <p className="text-muted small">
             We sent a 6-digit OTP to <strong>{email}</strong>.<br />
@@ -190,17 +192,18 @@ const AlumniSignUp = () => {
   }
 
   return (
-    <div className="signup-background py-4">
-      <Link to="/register" className="back-btn-circle" title="Back to Selection">
+    <div className="signup-background py-4 position-relative">
+      <AuthVideoBackground />
+      <Link to="/register" className="back-btn-circle" title="Back to Selection" style={{ zIndex: 10 }}>
         <i className="fas fa-arrow-left"></i>
       </Link>
       <Toaster position="top-center" />
 
-      <div className="container d-flex justify-content-center">
+      <div className="container d-flex justify-content-center position-relative" style={{ zIndex: 2 }}>
         <div className="form-glass-container p-4">
           <div className="text-center mb-4">
             <div className="brand-logo-container mb-2">
-              <img src="https://res.cloudinary.com/dnby5o1lt/image/upload/v1754489527/ALUMINI_CONNECT_LOGO_hwlrpw.png" alt="MAMCET Logo" className="auth-logo" />
+              <img src="/aitm-logo.png" alt="AITM Bhatkal Logo" className="auth-logo" style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
               <span className="ms-2 brand-name-red">ALUMNI CONNECT</span>
             </div>
             <h4 className="fw-bold">Alumni Registration</h4>

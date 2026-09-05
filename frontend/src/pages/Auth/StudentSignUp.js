@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { authService } from '../../services/api';
 import { ClipLoader } from 'react-spinners';
 import toast, { Toaster } from 'react-hot-toast';
+import AuthVideoBackground from '../../components/common/AuthVideoBackground';
 import '../../styles/Auth.css';
 
 const StudentSignUp = () => {
@@ -68,16 +69,22 @@ const StudentSignUp = () => {
   };
 
   return (
-    <div className="signup-background py-5">
-      <Link to="/register" className="back-btn-circle" title="Back to Selection">
+    <div className="signup-background py-5 position-relative">
+      <AuthVideoBackground />
+      <Link to="/register" className="back-btn-circle" title="Back to Selection" style={{ zIndex: 10 }}>
         <i className="fas fa-arrow-left"></i>
       </Link>
       <Toaster position="top-center" />
 
-      <div className="container d-flex justify-content-center">
-        <div className="form-glass-container p-4 p-md-5">
-          <div className="text-center mb-5">
-            <div className="brand-logo-container mb-3">
+      <div className="container d-flex justify-content-center position-relative" style={{ zIndex: 2 }}>
+        <div className="form-glass-container p-4">
+          <div className="text-center mb-4">
+            <div className="brand-logo-container mb-2 justify-content-center">
+              <img
+                src="/aitm-logo.png"
+                alt="AITM Bhatkal Logo"
+                style={{ width: '50px', height: '50px', objectFit: 'contain' }}
+              />
               <span className="ms-2 brand-name-red">ALUMNI CONNECT</span>
             </div>
             {otpStep ? (

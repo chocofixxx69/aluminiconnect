@@ -24,7 +24,7 @@ const fadeUp = {
 const JOB_TYPES    = ['All', 'Full-time', 'Part-time', 'Internship', 'Contract', 'Remote'];
 const EVENT_TYPES  = ['All', 'Networking', 'Workshop', 'Webinar', 'Seminar', 'Cultural', 'Tech Event', 'Reunion'];
 const DEPARTMENTS  = ['All', 'CSE', 'ECE', 'EEE', 'Mechanical', 'Civil', 'IT', 'MBA', 'Other'];
-const LOCATIONS    = ['All', 'Remote', 'Bangalore', 'Chennai', 'Hyderabad', 'Mumbai', 'Pune', 'Delhi NCR', 'Coimbatore', 'Trichy'];
+const LOCATIONS    = ['All', 'Remote', 'Bhatkal', 'Bangalore', 'Mangalore', 'Udupi', 'Hubli', 'Mumbai', 'Pune', 'Hyderabad', 'Chennai'];
 
 // ─── Shared Styles ────────────────────────────────────────────
 const accent = '#c84022';

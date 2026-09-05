@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { authService } from '../../services/api';
 import { ClipLoader } from 'react-spinners';
 import toast, { Toaster } from 'react-hot-toast';
+import AuthVideoBackground from '../../components/common/AuthVideoBackground';
 import '../../styles/Auth.css';
 
 /**
@@ -40,13 +41,14 @@ const AdminSignUp = () => {
   };
 
   return (
-    <div className="signup-background py-5">
-      <Link to="/register" className="back-btn-circle">
+    <div className="signup-background py-5 position-relative">
+      <AuthVideoBackground />
+      <Link to="/register" className="back-btn-circle" style={{ zIndex: 10 }}>
         <i className="fas fa-arrow-left"></i>
       </Link>
       <Toaster position="top-center" />
 
-      <div className="container d-flex justify-content-center align-items-center min-vh-100">
+      <div className="container d-flex justify-content-center align-items-center min-vh-100 position-relative" style={{ zIndex: 2 }}>
         <div className="form-glass-container p-4 p-md-5" style={{ maxWidth: '500px' }}>
           <div className="text-center mb-5">
             <h2 className="fw-bold">Admin Creation</h2>

@@ -3,7 +3,8 @@ const MOCK_USERS = [
     _id: '660000000000000000000001',
     id: '660000000000000000000001',
     name: 'Bharath K',
-    email: 'bharath@mamcet.com',
+    email: 'bharath@aitm.ac.in',
+    aliases: ['bharath@mamcet.com'],
     password: 'alumni@123',
     role: 'alumni',
     company: 'HILIFE AI',
@@ -21,14 +22,15 @@ const MOCK_USERS = [
       { title: 'Full Stack Developer', company: 'TechInnovate Solutions', duration: '2022 - 2024', desc: 'MERN stack development.' }
     ],
     education: [
-      { school: 'MAMCET', degree: 'B.E. Computer Science and Engineering', duration: '2020 - 2024' }
+      { school: 'Anjuman Institute of Technology and Management (AITM), Bhatkal', degree: 'B.E. Computer Science and Engineering', duration: '2020 - 2024' }
     ]
   },
   {
     _id: '660000000000000000000002',
     id: '660000000000000000000002',
     name: 'Student User',
-    email: 'student@mamcet.com',
+    email: 'student@aitm.ac.in',
+    aliases: ['student@mamcet.com'],
     password: 'alumni@123',
     role: 'student',
     batch: '2022-2026',
@@ -40,14 +42,15 @@ const MOCK_USERS = [
     skills: ['Python', 'Data Structures', 'Web Development', 'SQL'],
     bio: 'Pre-final year CSE student exploring cloud and full-stack engineering opportunities.',
     education: [
-      { school: 'MAMCET', degree: 'B.E. Computer Science and Engineering', duration: '2022 - 2026' }
+      { school: 'Anjuman Institute of Technology and Management (AITM), Bhatkal', degree: 'B.E. Computer Science and Engineering', duration: '2022 - 2026' }
     ]
   },
   {
     _id: '660000000000000000000003',
     id: '660000000000000000000003',
     name: 'Staff Coordinator',
-    email: 'staff@mamcet.com',
+    email: 'staff@aitm.ac.in',
+    aliases: ['staff@mamcet.com'],
     password: 'alumni@123',
     role: 'staff',
     department: 'Computer Science and Engineering',
@@ -62,11 +65,12 @@ const MOCK_USERS = [
     _id: '660000000000000000000004',
     id: '660000000000000000000004',
     name: 'Admin User',
-    email: 'admin@mamcet.com',
+    email: 'admin@aitm.ac.in',
+    aliases: ['admin@mamcet.com'],
     password: 'alumni@123',
-    secretKey: process.env.ADMIN_SECRET_KEY || 'MAMCET_ADMIN_2026',
+    secretKey: process.env.ADMIN_SECRET_KEY || 'AITM_ADMIN_2026',
     role: 'admin',
-    company: 'MAMCET',
+    company: 'AITM',
     designation: 'System Administrator',
     status: 'Active'
   }
@@ -122,7 +126,7 @@ const MOCK_EVENTS = [
     category: 'Networking',
     date: '2026-04-15',
     time: '10:00 AM',
-    venue: 'MAMCET Main Auditorium',
+    venue: 'AITM Main Auditorium, Bhatkal',
     desc: 'Annual gathering to reconnect with classmates, network, and discuss career trends.',
     image: 'https://images.unsplash.com/photo-1540575861501-7ad0582373f2?auto=format&fit=crop&w=1350&q=80',
     registeredBy: []

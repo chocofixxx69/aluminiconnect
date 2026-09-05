@@ -1,20 +1,20 @@
 /* Custom Styles based on MAMCET Design Screenshots */
 .dashboard-main-bg {
-    background-color: #f3f2ef;
-    /* Clean grey background like professional platforms */
+    background: transparent;
     min-height: 100vh;
 }
 
 .dashboard-card {
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
+    border: 1px solid var(--line, #e9e7ee);
+    border-radius: var(--radius-lg, 18px);
+    box-shadow: var(--shadow-sm, 0 1px 3px rgba(16,24,40,.05), 0 3px 10px rgba(16,24,40,.045));
+    transition: box-shadow .2s ease, transform .2s ease;
 }
 
 /* Profile Section Styling */
 .profile-top-banner {
     height: 65px;
-    background-color: #c84022;
-    /* MAMCET Red */
+    background: linear-gradient(135deg, #c84022 0%, #e8603c 100%);
 }
 
 .profile-avatar-main {
@@ -120,6 +120,14 @@
 
 .post-item:hover {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+.hover-bg-light {
+    transition: background-color .15s ease;
+}
+
+.hover-bg-light:hover {
+    background-color: var(--surface-muted, #f7f6fb) !important;
 }
 
 /* Job Posting Specific Enhancements */
